@@ -981,8 +981,11 @@ h1,h2,h3,h4,h5,h6,.brand,.hero__title,.hero__subtitle,.section__title{
 
 .intro-role{
   grid-row: 4;
-  color: rgba(255,255,255,.72);
-  font-size: clamp(12px, 1.6vw, 18px);
+  color: rgba(255,255,255,.92);
+  font-size: clamp(14px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.18;
+  text-shadow: 0 10px 30px rgba(0,0,0,.45);
 }
 .intro-role--left{ grid-column: 1; text-align: center; }
 .intro-role--right{ grid-column: 3; text-align: center; }
@@ -997,18 +1000,19 @@ h1,h2,h3,h4,h5,h6,.brand,.hero__title,.hero__subtitle,.section__title{
 .intro-name--left{ grid-column: 1; text-align: center; }
 .intro-name--right{ grid-column: 3; text-align: center; }
 .intro-name--aravind{ grid-row: 5; }
-.intro-name--shikha{ grid-row: 5; }
+.intro-name--shikha{ grid-row: 5 / span 2; align-self: center; }
 .intro-name--jayaram{ grid-row: 6; }
 
 .intro-with{
   grid-column: 2;
-  grid-row: 5;
+  grid-row: 5 / span 2;
   color: rgba(255,255,255,.85);
   font-weight: 700;
   font-size: clamp(12px, 1.8vw, 18px);
   letter-spacing: .08em;
   text-transform: none;
   text-shadow: 0 10px 30px rgba(0,0,0,.45);
+  align-self: center;
 }
 
 /* Responsive behavior */
