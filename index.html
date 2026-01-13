@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <!-- CRITICAL: Proper viewport meta for mobile responsiveness -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Aravind Jayaram &amp; Shikha — Wedding Invite</title>
   <meta name="description" content="Wedding invitation. Events, location, and details."/>
-  <!-- Preconnect for fonts if needed -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
   <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-  <!-- Global background VIDEO for all sections -->
+  <!-- Global background VIDEO -->
   <video 
     autoplay 
     class="site-bg-video" 
@@ -26,7 +24,7 @@
   </video>
   <div aria-hidden="true" class="site-bg-fallback"></div>
 
-  <!-- Minimal header (menu only) -->
+  <!-- Header / Menu -->
   <header class="topbar topbar--minimal">
     <button 
       aria-expanded="false" 
@@ -48,7 +46,7 @@
     </nav>
   </header>
 
-  <!-- Background music (BG Music only; soft volume + volume slider) -->
+  <!-- Background music -->
   <audio id="bgMusic" loop preload="auto">
     <source src="assets/BG%20Music.mp3" type="audio/mpeg"/>
   </audio>
@@ -73,13 +71,15 @@
     </div>
   </div>
 
-  <!-- Optional: Supabase client for server-stored wishes (configure in script.js) -->
+  <!-- Supabase client for wishes -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- SECTION 1 (Landing) -->
+  <!-- SECTION 1: Landing / Hero -->
   <section class="section section--hero" id="invite">
     <div class="scrim scrim--hero"></div>
     <div class="container hero hero--center">
+      
+      <!-- Logo Banner (enlarged) -->
       <div class="logo-banner">
         <img 
           alt="Wedding logo" 
@@ -89,6 +89,7 @@
         />
       </div>
 
+      <!-- Countdown -->
       <div aria-label="Countdown timer" class="countdown countdown--hero">
         <div class="countbox">
           <div class="countbox__num" data-cd="days">—</div>
@@ -108,6 +109,7 @@
         </div>
       </div>
 
+      <!-- Invite Text (50% larger names, styled Weds) -->
       <div aria-label="Invitation details" class="invite-text invite-text--simple">
         <div class="invite-line invite-line--name">Aravind Jayaram</div>
         <div class="invite-line invite-line--role">elder son of</div>
@@ -120,6 +122,7 @@
         <div class="invite-line invite-line--parents">Smt. Jayanti and Shri Pawan Kumar Agarwal</div>
       </div>
 
+      <!-- Datebox (30% larger font) -->
       <div class="datebox">
         <div class="datebox__title">5th &amp; 6th February 2026</div>
         <div class="datebox__sub">Seven Hills Hotel, Puri, Odisha</div>
@@ -135,7 +138,7 @@
     <span class="section-break__line"></span>
   </div>
 
-  <!-- SECTION 2 (Events with tabs) -->
+  <!-- SECTION 2: Events -->
   <section class="section section--events" id="events">
     <div class="scrim scrim--dark"></div>
     <div class="container">
@@ -160,97 +163,161 @@
         >6 Feb 2026</button>
       </div>
 
-      <!-- Day 1 -->
+      <!-- Day 1: 5th February 2026 -->
       <div aria-labelledby="tabDay1" class="tabpanel is-active" id="panelDay1" role="tabpanel">
         <article class="dayblock dayblock--single">
           <h3 class="dayblock__title">5th February 2026 (Thursday)</h3>
           <div class="events-table" role="list">
+            
+            <!-- Event 1: Guest Check-in -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 08:00 AM onwards (Guest Check-in)</div>
-              <div class="event-line event-line--func">🧳 Guest Check-in : Arrivals and check-in at the venue</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">08:00 AM onwards</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🧳</span> Guest Check-in
+              </div>
+              <div class="event-line event-line--desc">Arrivals and check-in at the venue</div>
             </div>
+            
+            <!-- Event 2: Breakfast -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 09:00 – 11:00 AM (Breakfast)</div>
-              <div class="event-line event-line--func">🍽️ Breakfast : Breakfast service for guests</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">09:00 – 11:00 AM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🍽️</span> Breakfast
+              </div>
+              <div class="event-line event-line--desc">Breakfast service for guests</div>
             </div>
+            
+            <!-- Event 3: Snathakam -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 09:30 AM (Snathakam)</div>
-              <div class="event-line event-line--func">🔥 Snathakam : Ritual symbolizing the groom's readiness to begin...</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : Traditional &amp; Elegant</em></div>
+              <div class="event-line event-line--time">09:30 AM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🔥</span> Snathakam
+              </div>
+              <div class="event-line event-line--desc">Ritual symbolizing the groom's readiness to begin his new journey</div>
+              <div class="event-line event-line--attire">Traditional &amp; Elegant</div>
             </div>
+            
+            <!-- Event 4: Carnival by the Pool -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 11:00 AM (Carnival by the Pool)</div>
-              <div class="event-line event-line--func">🎪 Carnival by the Pool : Enjoy fun games activities and a DJ-led dance party by...</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : Garden Brights (Bright florals in Blue or Pink)</em></div>
+              <div class="event-line event-line--time">11:00 AM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🎪</span> Carnival by the Pool
+              </div>
+              <div class="event-line event-line--desc">Enjoy fun games, activities, and a DJ-led dance party by the poolside</div>
+              <div class="event-line event-line--attire">Garden Brights (Bright florals in Blue or Pink)</div>
             </div>
+            
+            <!-- Event 5: Lunch -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 01:00 PM (Lunch)</div>
-              <div class="event-line event-line--func">🍱 Lunch : Lunch service for guests</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">01:00 PM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🍱</span> Lunch
+              </div>
+              <div class="event-line event-line--desc">Lunch service for guests</div>
             </div>
+            
+            <!-- Event 6: Sangeet -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 07:30 PM (Sangeet)</div>
-              <div class="event-line event-line--func">💃🕺 Sangeet : An evening of melodies and dance as the families come...</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : Glam &amp; Glow (Festive party wear with sparkle and statement style)</em></div>
+              <div class="event-line event-line--time">07:30 PM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">💃🕺</span> Sangeet
+              </div>
+              <div class="event-line event-line--desc">An evening of melodies and dance as the families come together to celebrate</div>
+              <div class="event-line event-line--attire">Glam &amp; Glow (Festive party wear with sparkle and statement style)</div>
             </div>
+            
+            <!-- Event 7: Dinner -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 09:00 PM (Dinner)</div>
-              <div class="event-line event-line--func">🍽️ Dinner : Dinner service for guests</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">09:00 PM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🍽️</span> Dinner
+              </div>
+              <div class="event-line event-line--desc">Dinner service for guests</div>
             </div>
+            
           </div>
         </article>
       </div>
 
-      <!-- Day 2 -->
+      <!-- Day 2: 6th February 2026 -->
       <div aria-labelledby="tabDay2" class="tabpanel" id="panelDay2" role="tabpanel">
         <article class="dayblock dayblock--single">
           <h3 class="dayblock__title">6th February 2026 (Friday)</h3>
           <div class="events-table" role="list">
+            
+            <!-- Event 1: Breakfast -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 08:30 AM (Breakfast)</div>
-              <div class="event-line event-line--func">🍽️ Breakfast : Breakfast service for guests</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">08:30 AM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🍽️</span> Breakfast
+              </div>
+              <div class="event-line event-line--desc">Breakfast service for guests</div>
             </div>
+            
+            <!-- Event 2: Haldi -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 10:00 AM (Haldi)</div>
-              <div class="event-line event-line--func">🟡 Haldi : A vibrant celebration of turmeric laughter and blessings...</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : Sunshine Shades (Yellow &amp; Green)</em></div>
+              <div class="event-line event-line--time">10:00 AM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🟡</span> Haldi
+              </div>
+              <div class="event-line event-line--desc">A vibrant celebration of turmeric, laughter, and blessings for the couple</div>
+              <div class="event-line event-line--attire">Sunshine Shades (Yellow &amp; Green)</div>
             </div>
+            
+            <!-- Event 3: Lunch -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 01:00 PM (Lunch)</div>
-              <div class="event-line event-line--func">🍱 Lunch : Lunch service for guests</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">01:00 PM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🍱</span> Lunch
+              </div>
+              <div class="event-line event-line--desc">Lunch service for guests</div>
             </div>
+            
+            <!-- Event 4: Baraat -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 06:30 PM (Baraat)</div>
-              <div class="event-line event-line--func">🎁 Baraat : Drums dhol and dancing as the groom arrives in grand...</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : Royal Tradition (Regal ethnic wear with rich, elegant accents)</em></div>
+              <div class="event-line event-line--time">06:30 PM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🐎</span> Baraat
+              </div>
+              <div class="event-line event-line--desc">Drums, dhol, and dancing as the groom arrives in grand procession</div>
+              <div class="event-line event-line--attire">Royal Tradition (Regal ethnic wear with rich, elegant accents)</div>
             </div>
+            
+            <!-- Event 5: Varmala -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 08:00 PM (Varmala)</div>
-              <div class="event-line event-line--func">💍 Varmala : Joyful garland exchange as families cheer celebrate and...</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : Royal Tradition (Regal ethnic wear with rich, elegant accents)</em></div>
+              <div class="event-line event-line--time">08:00 PM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">💐</span> Varmala
+              </div>
+              <div class="event-line event-line--desc">Joyful garland exchange as families cheer, celebrate, and bless the couple</div>
+              <div class="event-line event-line--attire">Royal Tradition (Regal ethnic wear with rich, elegant accents)</div>
             </div>
+            
+            <!-- Event 6: Reception & Dinner -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 09:00 PM (Reception &amp; Dinner)</div>
-              <div class="event-line event-line--func">🍽️🥂 Reception &amp; Dinner : Reception celebration followed by dinner</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">09:00 PM</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🍽️🥂</span> Reception &amp; Dinner
+              </div>
+              <div class="event-line event-line--desc">Reception celebration followed by dinner</div>
             </div>
+            
+            <!-- Event 7: Vivaha Muhurtham -->
             <div class="event-card">
-              <div class="event-line event-line--time">Time : 01:30 AM (early morning of 7th February 2026) (Vivaha Muhurtham)</div>
-              <div class="event-line event-line--func">🔥💍 Vivaha Muhurtham : Sacred vows are exchanged before the holy fire</div>
-              <div class="event-line event-line--attire"><em>Suggested Attire : —</em></div>
+              <div class="event-line event-line--time">01:30 AM (early morning of 7th February)</div>
+              <div class="event-line event-line--name">
+                <span class="event-icon">🔥💍</span> Vivaha Muhurtham
+              </div>
+              <div class="event-line event-line--desc">Sacred vows are exchanged before the holy fire, uniting two souls in marriage</div>
             </div>
+            
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3 (Bride & Groom photos + wishes) -->
+  <!-- SECTION 3: Bride & Groom -->
   <section class="section" id="couple">
     <div class="scrim"></div>
     <div class="container">
@@ -351,7 +418,7 @@
     <span class="section-break__line"></span>
   </div>
 
-  <!-- SECTION 4 (Location) -->
+  <!-- SECTION 4: Location -->
   <section class="section" id="location">
     <div class="scrim"></div>
     <div class="container">
@@ -376,7 +443,7 @@
     </div>
   </section>
 
-  <!-- FINAL SECTION (Regards with royal divider + bouquet) -->
+  <!-- SECTION 5: Regards -->
   <section class="section section--regards" id="regards">
     <div class="container">
       <div class="section-break">

@@ -1,6 +1,6 @@
-// Wedding Invite — Mobile-Optimized v14
+// Wedding Invite — Mobile-Optimized v15
 
-// Ensure BG video plays at reduced speed and is visible (fallback handled via CSS)
+// Ensure BG video plays at reduced speed
 (function bgVideo(){
   const v = document.getElementById('bgVideo');
   if(!v) return;
@@ -91,7 +91,7 @@
   setInterval(tick, 1000);
 })();
 
-// Background music (soft volume + autoplay attempt + volume slider)
+// Background music
 (function music(){
   const DEFAULT_VOLUME = 0.10;
   const audio = document.getElementById('bgMusic');
@@ -136,7 +136,7 @@
   });
 })();
 
-// Image loader: tries multiple extensions for a basename (e.g., "Photo 1")
+// Image loader: tries multiple extensions for a basename
 (function imageFallbacks(){
   function trySources(img, sources){
     let i = 0;
@@ -165,8 +165,7 @@
   });
 })();
 
-// Couple carousel (clockwise auto-rotate every 5s; pauses 5s after user interaction)
-// UPDATED: Responsive layout calculations for mobile
+// Couple carousel with responsive layout
 (function coupleCarousel(){
   const items = Array.from(document.querySelectorAll('#carouselStage .carousel__item'));
   const range = document.getElementById('carouselRange');
@@ -186,11 +185,10 @@
     return d;
   }
 
-  // RESPONSIVE: Calculate spacing based on viewport width
+  // Responsive spacing based on viewport
   function getResponsiveValues(){
     const vw = window.innerWidth;
     
-    // Mobile-first responsive values
     if(vw < 360){
       return { xSpacing: 100, ySpacing: 10, hiddenX: 100 };
     } else if(vw < 480){
@@ -256,7 +254,7 @@
   if(prev) prev.addEventListener('click', () => { go(idx - 1); pauseAndResume(); });
   if(next) next.addEventListener('click', () => { go(idx + 1); pauseAndResume(); });
 
-  // ADDED: Re-layout on resize for responsive carousel
+  // Re-layout on resize
   let resizeCarouselTimer = null;
   window.addEventListener('resize', () => {
     clearTimeout(resizeCarouselTimer);
@@ -267,7 +265,7 @@
   timer = setInterval(stepClockwise, 5000);
 })();
 
-// Wishes word-cloud (server-stored with Supabase optional)
+// Wishes word-cloud
 (function wishes(){
   const SUPABASE_URL = "";      // <-- paste here
   const SUPABASE_ANON_KEY = ""; // <-- paste here
@@ -292,11 +290,9 @@
     cloud.innerHTML = "";
     cloud.style.minHeight = cloud.style.minHeight || "200px";
 
-    // Create clouds first so we can measure
     list.forEach((text) => {
       const el = document.createElement('div');
       el.className = 'cloud-wish';
-      // RESPONSIVE: Smaller font sizes on mobile
       const vw = window.innerWidth;
       const minFs = vw < 480 ? 10 : 12;
       const maxFs = vw < 480 ? 14 : 18;
@@ -316,7 +312,7 @@
     const H = Math.max(200, cloud.clientHeight);
 
     const placed = [];
-    const pad = 8; // Reduced padding for mobile
+    const pad = 8;
     const cx = W / 2;
     const cy = H / 2;
 
@@ -330,7 +326,6 @@
 
       let ok = false;
 
-      // Spiral search around center
       for(let t = 0; t < 1500; t++){
         const angle = 0.55 * t;
         const radius = 2 + t * 0.42;
@@ -347,7 +342,6 @@
         }
       }
 
-      // Random fallback
       if(!ok){
         for(let tries = 0; tries < 250; tries++){
           const x = 4 + Math.random() * (W - w - 8);
@@ -362,7 +356,6 @@
         }
       }
 
-      // Final fallback: stack
       if(!ok){
         const x = 4 + (i % 2) * (W * 0.48);
         const y = 4 + Math.floor(i / 2) * (h + 10);
@@ -403,7 +396,6 @@
   let clientPromise = loadFromSupabase();
   let lastWishes = demo.slice();
 
-  // Relayout on resize (keeps the cloud packed on mobile rotation)
   let resizeT = null;
   window.addEventListener('resize', () => {
     clearTimeout(resizeT);
