@@ -895,6 +895,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   padding: 12px;
   box-shadow: var(--shadow);
   margin-top: 10px;
+  overflow: hidden; /* FIX: Prevent carousel items from causing horizontal scroll */
 }
 
 @media (min-width: 480px) {
@@ -910,6 +911,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden; /* FIX: Contain transformed items */
 }
 
 .carousel__stage {
@@ -1123,7 +1125,7 @@ textarea {
   border: 1px solid rgba(255,211,106,.70);
   box-shadow: 0 18px 48px rgba(0,0,0,.38);
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* FIX: Contain cloud-wish pseudo-elements */
 }
 
 @media (min-width: 640px) {
