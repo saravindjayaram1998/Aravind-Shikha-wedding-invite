@@ -1,6 +1,6 @@
-// Wedding Invite — v13
+// Wedding Invite — Mobile-Optimized v14
 
-// Ensure BG video plays at 1x and is visible (fallback handled via CSS)
+// Ensure BG video plays at reduced speed and is visible (fallback handled via CSS)
 (function bgVideo(){
   const v = document.getElementById('bgVideo');
   if(!v) return;
@@ -166,6 +166,7 @@
 })();
 
 // Couple carousel (clockwise auto-rotate every 5s; pauses 5s after user interaction)
+// UPDATED: Responsive layout calculations for mobile
 (function coupleCarousel(){
   const items = Array.from(document.querySelectorAll('#carouselStage .carousel__item'));
   const range = document.getElementById('carouselRange');
@@ -185,20 +186,40 @@
     return d;
   }
 
+  // RESPONSIVE: Calculate spacing based on viewport width
+  function getResponsiveValues(){
+    const vw = window.innerWidth;
+    
+    // Mobile-first responsive values
+    if(vw < 360){
+      return { xSpacing: 100, ySpacing: 10, hiddenX: 100 };
+    } else if(vw < 480){
+      return { xSpacing: 140, ySpacing: 12, hiddenX: 140 };
+    } else if(vw < 640){
+      return { xSpacing: 180, ySpacing: 14, hiddenX: 180 };
+    } else if(vw < 860){
+      return { xSpacing: 220, ySpacing: 16, hiddenX: 200 };
+    } else {
+      return { xSpacing: 260, ySpacing: 18, hiddenX: 220 };
+    }
+  }
+
   function layout(){
+    const { xSpacing, ySpacing, hiddenX } = getResponsiveValues();
+    
     items.forEach((el, i) => {
       const d = signedDiff(i, idx);
       const abs = Math.abs(d);
 
       if(abs > 2){
         el.classList.add('is-hidden');
-        el.style.transform = `translate(-50%, -50%) translateX(${d*220}px) translateY(${abs*18}px) scale(0.35)`;
+        el.style.transform = `translate(-50%, -50%) translateX(${d*hiddenX}px) translateY(${abs*ySpacing}px) scale(0.35)`;
         return;
       }
       el.classList.remove('is-hidden');
 
-      const x = d * 260;
-      const y = abs * 18;
+      const x = d * xSpacing;
+      const y = abs * ySpacing;
       const scale = d === 0 ? 1.0 : (abs === 1 ? 0.70 : 0.50);
       const z = d === 0 ? 70 : (abs === 1 ? 25 : -25);
       const rotateY = d * -10;
@@ -235,6 +256,13 @@
   if(prev) prev.addEventListener('click', () => { go(idx - 1); pauseAndResume(); });
   if(next) next.addEventListener('click', () => { go(idx + 1); pauseAndResume(); });
 
+  // ADDED: Re-layout on resize for responsive carousel
+  let resizeCarouselTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeCarouselTimer);
+    resizeCarouselTimer = setTimeout(layout, 100);
+  });
+
   layout();
   timer = setInterval(stepClockwise, 5000);
 })();
@@ -262,13 +290,17 @@
   function renderWishes(items){
     const list = (items || []).slice(0, 26);
     cloud.innerHTML = "";
-    cloud.style.minHeight = cloud.style.minHeight || "260px";
+    cloud.style.minHeight = cloud.style.minHeight || "200px";
 
     // Create clouds first so we can measure
     list.forEach((text) => {
       const el = document.createElement('div');
       el.className = 'cloud-wish';
-      el.style.setProperty('--fs', `${Math.round(rand(12, 18))}px`);
+      // RESPONSIVE: Smaller font sizes on mobile
+      const vw = window.innerWidth;
+      const minFs = vw < 480 ? 10 : 12;
+      const maxFs = vw < 480 ? 14 : 18;
+      el.style.setProperty('--fs', `${Math.round(rand(minFs, maxFs))}px`);
       el.style.setProperty('--rot', `${Math.round(rand(-10, 10))}deg`);
 
       const inner = document.createElement('div');
@@ -281,10 +313,10 @@
 
     const els = Array.from(cloud.querySelectorAll('.cloud-wish'));
     const W = Math.max(1, cloud.clientWidth);
-    const H = Math.max(260, cloud.clientHeight);
+    const H = Math.max(200, cloud.clientHeight);
 
     const placed = [];
-    const pad = 10;
+    const pad = 8; // Reduced padding for mobile
     const cx = W / 2;
     const cy = H / 2;
 
@@ -305,7 +337,7 @@
         const x = cx + Math.cos(angle) * radius - w / 2;
         const y = cy + Math.sin(angle) * radius - h / 2;
 
-        if(x < 6 || y < 6 || x + w > W - 6 || y + h > H - 6) continue;
+        if(x < 4 || y < 4 || x + w > W - 4 || y + h > H - 4) continue;
         if(!collides(x, y, w, h)){
           el.style.left = `${x}px`;
           el.style.top = `${y}px`;
@@ -318,8 +350,8 @@
       // Random fallback
       if(!ok){
         for(let tries = 0; tries < 250; tries++){
-          const x = 6 + Math.random() * (W - w - 12);
-          const y = 6 + Math.random() * (H - h - 12);
+          const x = 4 + Math.random() * (W - w - 8);
+          const y = 4 + Math.random() * (H - h - 8);
           if(!collides(x, y, w, h)){
             el.style.left = `${x}px`;
             el.style.top = `${y}px`;
@@ -332,10 +364,10 @@
 
       // Final fallback: stack
       if(!ok){
-        const x = 6 + (i % 2) * (W * 0.48);
-        const y = 6 + Math.floor(i / 2) * (h + 12);
-        el.style.left = `${Math.max(6, Math.min(W - w - 6, x))}px`;
-        el.style.top = `${Math.max(6, Math.min(H - h - 6, y))}px`;
+        const x = 4 + (i % 2) * (W * 0.48);
+        const y = 4 + Math.floor(i / 2) * (h + 10);
+        el.style.left = `${Math.max(4, Math.min(W - w - 4, x))}px`;
+        el.style.top = `${Math.max(4, Math.min(H - h - 4, y))}px`;
         placed.push({x, y, w, h});
       }
     });
@@ -345,7 +377,7 @@
     try{
       if(!SUPABASE_URL || !SUPABASE_ANON_KEY || !window.supabase){
         lastWishes = demo.slice();
-      renderWishes(lastWishes);
+        renderWishes(lastWishes);
         return null;
       }
       const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -377,7 +409,6 @@
     clearTimeout(resizeT);
     resizeT = setTimeout(() => renderWishes(lastWishes), 160);
   });
-
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
