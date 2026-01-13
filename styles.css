@@ -297,8 +297,8 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 /* ----- Logo Banner (ENLARGED to fill container) ----- */
 .logo-banner {
   position: relative;
-  width: min(260px, 70vw);
-  height: clamp(180px, 33vh, 300px);
+  width: min(400px, 85vw);
+  height: clamp(240px, 44vh, 400px);
   margin: 0 auto 6px;
   padding: 4px; /* Minimal padding so logo fills space */
   border-radius: 18px;
@@ -321,15 +321,15 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 @media (min-width: 480px) {
   .logo-banner {
-    width: min(380px, 68vw);
-    height: clamp(210px, 39vh, 360px);
+    width: min(580px, 88vw);
+    height: clamp(280px, 52vh, 480px);
   }
 }
 
 @media (min-width: 768px) {
   .logo-banner {
-    width: min(450px, 60vw);
-    height: clamp(270px, 45vh, 420px);
+    width: min(720px, 90vw);
+    height: clamp(360px, 60vh, 560px);
   }
 }
 
@@ -1729,8 +1729,8 @@ textarea {
   }
   
   .logo-banner {
-    width: 72vw;
-    height: clamp(150px, 27vh, 210px);
+    width: 92vw;
+    height: clamp(200px, 36vh, 280px);
   }
   
   .invite-text--simple .invite-line--name {
