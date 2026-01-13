@@ -1,366 +1,206 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Aravind Jayaram & Shikha — Wedding Invite</title>
-  <meta name="description" content="Wedding invitation. Events, location, and details." />
-<link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Aravind Jayaram &amp; Shikha — Wedding Invite</title>
+<meta content="Wedding invitation. Events, location, and details." name="description"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
-
 <body>
-  <!-- Global background VIDEO for all sections -->
-  <video class="site-bg-video" id="bgVideo" autoplay muted loop playsinline preload="auto">
-  <source src="assets/BG%20Video%20v1.mp4" type="video/mp4" />
-  <source src="assets/BG%20Video%20v1.mov" type="video/quicktime" />
+<!-- Global background VIDEO for all sections -->
+<video autoplay="" class="site-bg-video" id="bgVideo" loop="" muted="" playsinline="" preload="auto">
+<source src="assets/BG%20Video%20v1.mp4" type="video/mp4"/>
+<source src="assets/BG%20Video%20v1.mov" type="video/quicktime"/>
 </video>
-  <div class="site-bg-fallback" aria-hidden="true"></div>
-
-  <!-- Minimal header (menu only) -->
-  <header class="topbar topbar--minimal">
-    <button class="menu-btn" id="menuBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open menu">
+<div aria-hidden="true" class="site-bg-fallback"></div>
+<!-- Minimal header (menu only) -->
+<header class="topbar topbar--minimal">
+<button aria-expanded="false" aria-haspopup="true" aria-label="Open menu" class="menu-btn" id="menuBtn" type="button">
       Menu
-      <span class="menu-btn__icon" aria-hidden="true"></span>
-    </button>
-
-    <nav class="menu" id="menu" aria-label="Sections">
-      <a href="#invite">Invite</a>
-      <a href="#events">Events</a>
-      <a href="#couple">Meet the Bride and Groom</a>
-      <a href="#location">Location</a>
-      <a href="#regards">Regards</a>
-    </nav>
-  </header>
-
-  <!-- Background music (BG Music only; soft volume + volume slider) -->
-  <audio id="bgMusic" preload="auto" loop>
-    <source src="assets/BG%20Music.mp3" type="audio/mpeg">
-  </audio>
-
-  <div class="music-controls" aria-label="Music controls">
-    <button id="musicToggle" class="music-toggle" type="button" aria-label="Toggle music">Music: Off</button>
-    <div class="vol">
-      <span class="vol__label" aria-hidden="true">Vol</span>
-      <input id="volumeSlider" class="vol__slider" type="range" min="0" max="100" value="10" aria-label="Music volume">
-    </div>
-  </div>
-
-  <!-- Optional: Supabase client for server-stored wishes (configure in script.js) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- SECTION 1 (Landing) -->
-  <section id="invite" class="section section--hero">
-    <div class="scrim scrim--hero"></div>
-
-    <div class="container hero hero--center">
-      <div class="logo-banner">
-<img class="hero-logo" src="assets/Logo.png" alt="Wedding logo" onerror="this.style.display='none'">
+      <span aria-hidden="true" class="menu-btn__icon"></span>
+</button>
+<nav aria-label="Sections" class="menu" id="menu">
+<a href="#invite">Invite</a>
+<a href="#events">Events</a>
+<a href="#couple">Meet the Bride and Groom</a>
+<a href="#location">Location</a>
+<a href="#regards">Regards</a>
+</nav>
+</header>
+<!-- Background music (BG Music only; soft volume + volume slider) -->
+<audio id="bgMusic" loop="" preload="auto">
+<source src="assets/BG%20Music.mp3" type="audio/mpeg"/>
+</audio>
+<div aria-label="Music controls" class="music-controls">
+<button aria-label="Toggle music" class="music-toggle" id="musicToggle" type="button">Music: Off</button>
+<div class="vol">
+<span aria-hidden="true" class="vol__label">Vol</span>
+<input aria-label="Music volume" class="vol__slider" id="volumeSlider" max="100" min="0" type="range" value="10"/>
+</div>
+</div>
+<!-- Optional: Supabase client for server-stored wishes (configure in script.js) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- SECTION 1 (Landing) -->
+<section class="section section--hero" id="invite">
+<div class="scrim scrim--hero"></div>
+<div class="container hero hero--center">
+<div class="logo-banner">
+<img alt="Wedding logo" class="hero-logo" onerror="this.style.display='none'" src="assets/Logo.png"/>
+</div>
+<div aria-label="Countdown timer" class="countdown countdown--hero">
+<div class="countbox"><div class="countbox__num" data-cd="days">—</div><div class="countbox__label">Days</div></div>
+<div class="countbox"><div class="countbox__num" data-cd="hours">—</div><div class="countbox__label">Hours</div></div>
+<div class="countbox"><div class="countbox__num" data-cd="minutes">—</div><div class="countbox__label">Minutes</div></div>
+<div class="countbox"><div class="countbox__num" data-cd="seconds">—</div><div class="countbox__label">Seconds</div></div>
+</div>
+<div aria-label="Invitation details" class="invite-text invite-text--simple">
+<div class="invite-line invite-line--name">Aravind Jayaram</div>
+<div class="invite-line invite-line--role">elder son of</div>
+<div class="invite-line invite-line--parents">Smt. Bhagavathi Jyothi and Shri. Ramesh Babu Susarla</div>
+<div aria-hidden="true" class="invite-gap"></div>
+<div class="invite-line invite-line--weds">Weds</div>
+<div aria-hidden="true" class="invite-gap"></div>
+<div class="invite-line invite-line--name">Shikha</div>
+<div class="invite-line invite-line--role">Daughter of</div>
+<div class="invite-line invite-line--parents">Smt. Jayanti and Shri Pawan Kumar Agarwal</div>
+</div>
+<div class="datebox">
+<div class="datebox__title">5th &amp; 6th February 2026</div>
+<div class="datebox__sub">Seven Hills Hotel, Puri, Odisha</div>
+</div>
+<a class="btn btn--primary btn--center" href="#events">View events</a>
 </div>
 
-      <div class="countdown countdown--hero" aria-label="Countdown timer">
-        <div class="countbox"><div data-cd="days" class="countbox__num">—</div><div class="countbox__label">Days</div></div>
-        <div class="countbox"><div data-cd="hours" class="countbox__num">—</div><div class="countbox__label">Hours</div></div>
-        <div class="countbox"><div data-cd="minutes" class="countbox__num">—</div><div class="countbox__label">Minutes</div></div>
-        <div class="countbox"><div data-cd="seconds" class="countbox__num">—</div><div class="countbox__label">Seconds</div></div>
-      </div>
-
-      <div class="invite-text invite-text--simple" aria-label="Invitation details">
-  <div class="invite-line invite-line--name">Aravind Jayaram</div>
-  <div class="invite-line invite-line--role">elder son of</div>
-  <div class="invite-line invite-line--parents">Smt. Bhagavathi Jyothi and Shri. Ramesh Babu Susarla</div>
-
-  <div class="invite-gap" aria-hidden="true"></div>
-
-  <div class="invite-line invite-line--weds">Weds</div>
-
-  <div class="invite-gap" aria-hidden="true"></div>
-
-  <div class="invite-line invite-line--name">Shikha</div>
-  <div class="invite-line invite-line--role">Daughter of</div>
-  <div class="invite-line invite-line--parents">Smt. Jayanti and Shri Pawan Kumar Agarwal</div>
-</div>
-
-      <div class="datebox">
-          <div class="datebox__title">5th &amp; 6th February 2026</div>
-          <div class="datebox__sub">Seven Hills Hotel, Puri, Odisha</div>
-        </div>
-
-        <a class="btn btn--primary btn--center" href="#events">View events</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-break" aria-hidden="true">
-    <span class="section-break__line"></span>
-    <span class="section-break__star">✦</span>
-    <span class="section-break__line"></span>
-  </div>
-
-  <!-- SECTION 2 (Events with tabs) -->
-  <section id="events" class="section section--events">
-    <div class="scrim scrim--dark"></div>
-    <div class="container">
-      <h2 class="section__title">Events</h2>
-
-      <div class="tabs" role="tablist" aria-label="Event days">
-        <button class="tab is-active" id="tabDay1" type="button" role="tab" aria-selected="true" aria-controls="panelDay1">5 Feb 2026</button>
-        <button class="tab" id="tabDay2" type="button" role="tab" aria-selected="false" aria-controls="panelDay2">6 Feb 2026</button>
-      </div>
-
-      <!-- Day 1 -->
-      <div class="tabpanel is-active" id="panelDay1" role="tabpanel" aria-labelledby="tabDay1">
-        <article class="dayblock dayblock--single">
-          <h3 class="dayblock__title">5th February 2026 (Thursday)</h3>
-
-          <div class="events-table" role="list">
-          <div class="event-row">
-            <div class="time-pill">08:00 AM onwards</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🧳</span><span class="event-title">Guest Check-in</span></div>
-            <div class="details-card">
-              <div class="details-text">Arrivals and check-in at the venue.</div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">09:00 – 11:00 AM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🍽️</span><span class="event-title">Breakfast</span></div>
-            <div class="details-card">
-              <div class="details-text">Breakfast service for guests.</div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">09:30 AM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🔥</span><span class="event-title">Snathakam</span></div>
-            <div class="details-card">
-              <div class="details-text">Ritual symbolizing the groom’s readiness to begin married life.</div>
-              <div class="wardrobe"><em>Suggested wardrobe: Traditional & Elegant</em></div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">11:00 AM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🎪</span><span class="event-title">Carnival by the Pool</span></div>
-            <div class="details-card">
-              <div class="details-text">Enjoy fun games activities and a DJ-led dance party by the pool.</div>
-              <div class="wardrobe"><em>Suggested wardrobe: Garden Brights (Bright florals in Blue or Pink)</em></div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">01:00 PM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🍱</span><span class="event-title">Lunch</span></div>
-            <div class="details-card">
-              <div class="details-text">Lunch service for guests.</div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">07:30 PM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">💃🕺</span><span class="event-title">Sangeet</span></div>
-            <div class="details-card">
-              <div class="details-text">An evening of melodies and dance as the families come alive in celebration.</div>
-              <div class="wardrobe"><em>Suggested wardrobe: Glam & Glow (Festive party wear with sparkle and statement style)</em></div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">09:00 PM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🍽️</span><span class="event-title">Dinner</span></div>
-            <div class="details-card">
-              <div class="details-text">Dinner service for guests.</div>
-            </div>
-          </div>
-          </div></article>
-      </div>
-
-      <!-- Day 2 -->
-      <div class="tabpanel" id="panelDay2" role="tabpanel" aria-labelledby="tabDay2">
-        <article class="dayblock dayblock--single">
-          <h3 class="dayblock__title">6th February 2026 (Friday)</h3>
-
-          <div class="events-table" role="list">
-          <div class="event-row">
-            <div class="time-pill">08:30 AM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🍽️</span><span class="event-title">Breakfast</span></div>
-            <div class="details-card">
-              <div class="details-text">Breakfast service for guests.</div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">10:00 AM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🟡</span><span class="event-title">Haldi</span></div>
-            <div class="details-card">
-              <div class="details-text">A vibrant celebration of turmeric laughter and blessings to the couple.</div>
-              <div class="wardrobe"><em>Suggested wardrobe: Sunshine Shades (Yellow & Green)</em></div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">01:00 PM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🍱</span><span class="event-title">Lunch</span></div>
-            <div class="details-card">
-              <div class="details-text">Lunch service for guests.</div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">06:30 PM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🐎</span><span class="event-title">Baraat</span></div>
-            <div class="details-card">
-              <div class="details-text">Drums dhol and dancing as the groom arrives in grand celebration.</div>
-              <div class="wardrobe"><em>Suggested wardrobe: Royal Tradition (Regal ethnic wear with rich, elegant accents)</em></div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">08:00 PM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">💐</span><span class="event-title">Varmala</span></div>
-            <div class="details-card">
-              <div class="details-text">Joyful garland exchange as families cheer celebrate and shower blessings.</div>
-              <div class="wardrobe"><em>Suggested wardrobe: Royal Tradition (Regal ethnic wear with rich, elegant accents)</em></div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">09:00 PM</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🍽️🥂</span><span class="event-title">Reception & Dinner</span></div>
-            <div class="details-card">
-              <div class="details-text">Reception celebration followed by dinner.</div>
-            </div>
-          </div>
-
-          <div class="event-row">
-            <div class="time-pill">01:30 AM (early morning of 7th February 2026)</div>
-            <div class="event-chip"><span class="event-icon" aria-hidden="true">🔥💍</span><span class="event-title">Vivaha Muhurtham</span></div>
-            <div class="details-card">
-              <div class="details-text">Sacred vows are exchanged before the holy fire</div>
-            </div>
-          </div>
-          </div></article>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION 3 (Bride & Groom photos + wishes) -->
-  <section id="couple" class="section">
-    <div class="scrim"></div>
-    <div class="container">
-      <h2 class="section__title">Meet the Bride and Groom</h2>
-
-      <div class="carousel-wrap">
-        <div class="carousel" id="coupleCarousel" aria-label="Bride and Groom photo carousel">
-          <button class="carousel__btn carousel__btn--left" type="button" id="carouselPrev" aria-label="Previous photo">‹</button>
-          <div class="carousel__stage" id="carouselStage">
-            <div class="carousel__item"><img class="carousel__img" data-basename="Photo 1" alt="Photo 1"></div>
-            <div class="carousel__item"><img class="carousel__img" data-basename="Photo 2" alt="Photo 2"></div>
-            <div class="carousel__item"><img class="carousel__img" data-basename="Photo 3" alt="Photo 3"></div>
-            <div class="carousel__item"><img class="carousel__img" data-basename="Photo 4" alt="Photo 4"></div>
-            <div class="carousel__item"><img class="carousel__img" data-basename="Photo 5" alt="Photo 5"></div>
-            <div class="carousel__item"><img class="carousel__img" data-basename="Photo 6" alt="Photo 6"></div>
-          </div>
-          <button class="carousel__btn carousel__btn--right" type="button" id="carouselNext" aria-label="Next photo">›</button>
-        </div>
-
-        <input class="carousel__range" id="carouselRange" type="range" min="1" max="6" step="1" value="1" aria-label="Photo selector">
-      </div>
-
-
-      <div class="bio-cols" aria-label="Bride and Groom notes">
-        <div class="bio-card">
-          <h3 class="bio-title">Shikha</h3>
-          <div class="bio-lines" aria-hidden="true">
-            <div class="bio-line"></div>
-            <div class="bio-line"></div>
-            <div class="bio-line"></div>
-            <div class="bio-line"></div>
-          </div>
-        </div>
-        <div class="bio-card">
-          <h3 class="bio-title">Aravind</h3>
-          <div class="bio-lines" aria-hidden="true">
-            <div class="bio-line"></div>
-            <div class="bio-line"></div>
-            <div class="bio-line"></div>
-            <div class="bio-line"></div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="wishes">
-        <h3 class="guestbook__title">Leave your best wishes for Bride and the Groom</h3>
-
-        
-        <div class="wishes-grid">
-          <form id="wishForm" class="form">
-          <label>
-            <textarea id="wishMessage" aria-label="Your message" maxlength="220" required placeholder="Write your blessings…"></textarea>
-          </label>
-          <button class="btn btn--primary" type="submit">Send wish</button>
-        </form>
-          <div id="wishCloud" class="wish-cloud" aria-live="polite"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="section-break section-break--thin" aria-hidden="true"><span class="section-break__line"></span><span class="section-break__star">✦</span><span class="section-break__line"></span></div>
-
-  <!-- SECTION 4 (Location) -->
-  <section id="location" class="section">
-    <div class="scrim"></div>
-    <div class="container">
-      <h2 class="section__title">Location</h2>
-      <p class="section__lead section__lead--location">Seven Hills Hotel, Puri, Odisha</p>
-
-      <div class="grid2 grid2--location">
-        <div class="card">
-          <img class="location-img" data-basename="Seven Hills Hotel" alt="Seven Hills Hotel">
-          <p class="muted" style="margin-top:12px;">Tap below to open directions in Google Maps.</p>
-          <a class="btn btn--primary" target="_blank" rel="noreferrer"
-             href="https://www.google.com/maps/search/?api=1&query=Seven%20Hills%20Hotel%2C%20Puri%2C%20Odisha">Open map</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL SECTION (Regards with royal divider + bouquet) -->
-  <section id="regards" class="section section--regards">
-  <div class="container">
-    <div class="section-break">
-      <span class="section-break__line"></span>
-      <span class="section-break__star">✦</span>
-      <span class="section-break__line"></span>
-    </div>
-
-    <h2 class="regards__title">With warm regards from</h2>
-
-    <div class="regards__grid">
-      <div class="regards__col">
-        <div class="regards__family">Susarla Family</div>
-        <ul class="regards__list">
-          <li>Smt. Bhagawathi Jyothi</li>
-          <li>Shri. Ramesh Babu Susarla</li>
-          <li>Abhiram Susarla</li>
-        </ul>
-      </div>
-
-      <div class="regards__col">
-        <div class="regards__family">Agarwal Family</div>
-        <ul class="regards__list">
-          <li>Smt. Jayanti Agarwal</li>
-          <li>Shri. Pawan Kumar Agarwal</li>
-          <li>Piyush Agarwal</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </section>
-
-  <script src="script.js"></script>
+<div aria-hidden="true" class="section-break">
+<span class="section-break__line"></span>
+<span class="section-break__star">✦</span>
+<span class="section-break__line"></span>
+</div>
+<!-- SECTION 2 (Events with tabs) -->
+<section class="section section--events" id="events">
+<div class="scrim scrim--dark"></div>
+<div class="container">
+<h2 class="section__title">Events</h2>
+<div aria-label="Event days" class="tabs" role="tablist">
+<button aria-controls="panelDay1" aria-selected="true" class="tab is-active" id="tabDay1" role="tab" type="button">5 Feb 2026</button>
+<button aria-controls="panelDay2" aria-selected="false" class="tab" id="tabDay2" role="tab" type="button">6 Feb 2026</button>
+</div>
+<!-- Day 1 -->
+<div aria-labelledby="tabDay1" class="tabpanel is-active" id="panelDay1" role="tabpanel">
+<article class="dayblock dayblock--single">
+<h3 class="dayblock__title">5th February 2026 (Thursday)</h3>
+<div class="events-table" role="list"><div class="event-card"><div class="event-line event-line--time">Time : 08:00 AM onwards (Guest Check-in)</div><div class="event-line event-line--func">🧳 Guest Check-in : Arrivals and check-in at the venue</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 09:00 – 11:00 AM (Breakfast)</div><div class="event-line event-line--func">🍽️ Breakfast : Breakfast service for guests</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 09:30 AM (Snathakam)</div><div class="event-line event-line--func">🔥 Snathakam : Ritual symbolizing the groom’s readiness to begin...</div><div class="event-line event-line--attire"><em>Suggested Attire : Traditional &amp; Elegant</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 11:00 AM (Carnival by the Pool)</div><div class="event-line event-line--func">🎪 Carnival by the Pool : Enjoy fun games activities and a DJ-led dance party by...</div><div class="event-line event-line--attire"><em>Suggested Attire : Garden Brights (Bright florals in Blue or Pink)</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 01:00 PM (Lunch)</div><div class="event-line event-line--func">🍱 Lunch : Lunch service for guests</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 07:30 PM (Sangeet)</div><div class="event-line event-line--func">💃🕺 Sangeet : An evening of melodies and dance as the families come...</div><div class="event-line event-line--attire"><em>Suggested Attire : Glam &amp; Glow (Festive party wear with sparkle and statement style)</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 09:00 PM (Dinner)</div><div class="event-line event-line--func">🍽️ Dinner : Dinner service for guests</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div></div></article>
+</div>
+<!-- Day 2 -->
+<div aria-labelledby="tabDay2" class="tabpanel" id="panelDay2" role="tabpanel">
+<article class="dayblock dayblock--single">
+<h3 class="dayblock__title">6th February 2026 (Friday)</h3>
+<div class="events-table" role="list"><div class="event-card"><div class="event-line event-line--time">Time : 08:30 AM (Breakfast)</div><div class="event-line event-line--func">🍽️ Breakfast : Breakfast service for guests</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 10:00 AM (Haldi)</div><div class="event-line event-line--func">🟡 Haldi : A vibrant celebration of turmeric laughter and blessings...</div><div class="event-line event-line--attire"><em>Suggested Attire : Sunshine Shades (Yellow &amp; Green)</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 01:00 PM (Lunch)</div><div class="event-line event-line--func">🍱 Lunch : Lunch service for guests</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 06:30 PM (Baraat)</div><div class="event-line event-line--func">🐎 Baraat : Drums dhol and dancing as the groom arrives in grand...</div><div class="event-line event-line--attire"><em>Suggested Attire : Royal Tradition (Regal ethnic wear with rich, elegant accents)</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 08:00 PM (Varmala)</div><div class="event-line event-line--func">💐 Varmala : Joyful garland exchange as families cheer celebrate and...</div><div class="event-line event-line--attire"><em>Suggested Attire : Royal Tradition (Regal ethnic wear with rich, elegant accents)</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 09:00 PM (Reception &amp; Dinner)</div><div class="event-line event-line--func">🍽️🥂 Reception &amp; Dinner : Reception celebration followed by dinner</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div><div class="event-card"><div class="event-line event-line--time">Time : 01:30 AM (early morning of 7th February 2026) (Vivaha Muhurtham)</div><div class="event-line event-line--func">🔥💍 Vivaha Muhurtham : Sacred vows are exchanged before the holy fire</div><div class="event-line event-line--attire"><em>Suggested Attire : —</em></div></div></div></article>
+</div>
+</div>
+</section>
+<!-- SECTION 3 (Bride & Groom photos + wishes) -->
+<section class="section" id="couple">
+<div class="scrim"></div>
+<div class="container">
+<h2 class="section__title">Meet the Bride and Groom</h2>
+<div class="carousel-wrap">
+<div aria-label="Bride and Groom photo carousel" class="carousel" id="coupleCarousel">
+<button aria-label="Previous photo" class="carousel__btn carousel__btn--left" id="carouselPrev" type="button">‹</button>
+<div class="carousel__stage" id="carouselStage">
+<div class="carousel__item"><img alt="Photo 1" class="carousel__img" data-basename="Photo 1"/></div>
+<div class="carousel__item"><img alt="Photo 2" class="carousel__img" data-basename="Photo 2"/></div>
+<div class="carousel__item"><img alt="Photo 3" class="carousel__img" data-basename="Photo 3"/></div>
+<div class="carousel__item"><img alt="Photo 4" class="carousel__img" data-basename="Photo 4"/></div>
+<div class="carousel__item"><img alt="Photo 5" class="carousel__img" data-basename="Photo 5"/></div>
+<div class="carousel__item"><img alt="Photo 6" class="carousel__img" data-basename="Photo 6"/></div>
+</div>
+<button aria-label="Next photo" class="carousel__btn carousel__btn--right" id="carouselNext" type="button">›</button>
+</div>
+<input aria-label="Photo selector" class="carousel__range" id="carouselRange" max="6" min="1" step="1" type="range" value="1"/>
+</div>
+<div aria-label="Bride and Groom notes" class="bio-cols">
+<div class="bio-card">
+<h3 class="bio-title">Shikha</h3>
+<div aria-hidden="true" class="bio-lines">
+<div class="bio-line"></div>
+<div class="bio-line"></div>
+<div class="bio-line"></div>
+<div class="bio-line"></div>
+</div>
+</div>
+<div class="bio-card">
+<h3 class="bio-title">Aravind</h3>
+<div aria-hidden="true" class="bio-lines">
+<div class="bio-line"></div>
+<div class="bio-line"></div>
+<div class="bio-line"></div>
+<div class="bio-line"></div>
+</div>
+</div>
+</div>
+<div class="wishes">
+<h3 class="guestbook__title">Leave your best wishes for Bride and the Groom</h3>
+<div class="wishes-grid">
+<form class="form" id="wishForm">
+<label>
+<textarea aria-label="Your message" id="wishMessage" maxlength="220" placeholder="Write your blessings…" required=""></textarea>
+</label>
+<button class="btn btn--primary" type="submit">Send wish</button>
+</form>
+<div aria-live="polite" class="wish-cloud" id="wishCloud"></div>
+</div>
+</div>
+</div>
+</section>
+<div aria-hidden="true" class="section-break section-break--thin"><span class="section-break__line"></span><span class="section-break__star">✦</span><span class="section-break__line"></span></div>
+<!-- SECTION 4 (Location) -->
+<section class="section" id="location">
+<div class="scrim"></div>
+<div class="container">
+<h2 class="section__title">Location</h2>
+<p class="section__lead section__lead--location">Seven Hills Hotel, Puri, Odisha</p>
+<div class="grid2 grid2--location">
+<div class="card">
+<img alt="Seven Hills Hotel" class="location-img" data-basename="Seven Hills Hotel"/>
+<p class="muted" style="margin-top:12px;">Tap below to open directions in Google Maps.</p>
+<a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&amp;query=Seven%20Hills%20Hotel%2C%20Puri%2C%20Odisha" rel="noreferrer" target="_blank">Open map</a>
+</div>
+</div>
+</div>
+</section>
+<!-- FINAL SECTION (Regards with royal divider + bouquet) -->
+<section class="section section--regards" id="regards">
+<div class="container">
+<div class="section-break">
+<span class="section-break__line"></span>
+<span class="section-break__star">✦</span>
+<span class="section-break__line"></span>
+</div>
+<h2 class="regards__title">With warm regards from</h2>
+<div class="regards__grid">
+<div class="regards__col">
+<div class="regards__family">Susarla Family</div>
+<ul class="regards__list">
+<li>Smt. Bhagawathi Jyothi</li>
+<li>Shri. Ramesh Babu Susarla</li>
+<li>Abhiram Susarla</li>
+</ul>
+</div>
+<div class="regards__col">
+<div class="regards__family">Agarwal Family</div>
+<ul class="regards__list">
+<li>Smt. Jayanti Agarwal</li>
+<li>Shri. Pawan Kumar Agarwal</li>
+<li>Piyush Agarwal</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<script src="script.js"></script>
 </body>
 </html>

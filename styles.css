@@ -1210,3 +1210,70 @@ h1,h2,h3,h4,h5,h6,.brand,.hero__title,.hero__subtitle,.section__title{
     max-height: 280px;
   }
 }
+
+
+
+/* =========================
+   V32: Mobile-first event cards (unified 3-line layout)
+   ========================= */
+.events-table{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  overflow: visible;            /* remove horizontal scroll behavior */
+  padding-bottom: 0;
+}
+.event-card{
+  border-radius: 18px;
+  background: rgba(0,0,0,.42);
+  border: 1px solid rgba(255,211,106,.38);
+  box-shadow: 0 18px 46px rgba(0,0,0,.38);
+  padding: 14px 14px;
+}
+.event-line{ line-height: 1.35; }
+.event-line--time{
+  color: rgba(255,255,255,.92);
+  font-weight: 500;
+  font-size: clamp(12px, 2.8vw, 15px);
+  letter-spacing: .01em;
+}
+.event-line--func{
+  margin-top: 10px;
+  color: rgba(255,255,255,.98);
+  font-weight: 700;            /* medium/semi-bold */
+  font-size: clamp(14px, 3.2vw, 17px);
+}
+.event-line--attire{
+  margin-top: 10px;
+  font-size: clamp(12px, 2.7vw, 14px);
+}
+.event-line--attire em{
+  color: rgba(255,211,106,.92);
+  font-style: italic;
+}
+
+/* desktop: keep premium cards, allow 2-column grid if space */
+@media (min-width: 980px){
+  .events-table{
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+/* =========================
+   V32: Hero logo banner height -50%, logo remains contained
+   ========================= */
+.logo-banner{
+  height: clamp(150px, 24vh, 220px);
+  padding: 6px !important;
+}
+.logo-banner .hero-logo{
+  height: 100%;
+  width: auto !important;
+  max-width: 100% !important;
+  object-fit: contain;
+  display:block;
+}
+@media (max-width: 480px){
+  .logo-banner{ height: clamp(120px, 22vh, 180px); }
+}
