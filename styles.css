@@ -297,7 +297,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 /* ----- Logo Banner (ENLARGED to fill container) ----- */
 .logo-banner {
   position: relative;
-  width: min(95vw, 420px);
+  width: min(95vw, 840px);
   aspect-ratio: 2.25 / 1;
   margin: 0 auto 6px;
   padding: 12px;
@@ -317,13 +317,13 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 @media (min-width: 480px) {
   .logo-banner {
-    width: min(94vw, 520px);
+    width: min(94vw, 1040px);
   }
 }
 
 @media (min-width: 768px) {
   .logo-banner {
-    width: min(92vw, 650px);
+    width: min(92vw, 1300px);
   }
 }
 
@@ -398,12 +398,13 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 }
 
 .countbox {
-  padding: 8px 4px;
+  padding: 12px 16px;
   border-radius: var(--radius);
-  border: none;
-  background: rgba(0,0,0,.44);
+  border: 1px solid rgba(255, 211, 106, 0.25);
+  background: rgba(40, 40, 45, 0.65);
   text-align: center;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+  backdrop-filter: blur(4px);
 }
 
 @media (min-width: 480px) {
@@ -1019,6 +1020,20 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   letter-spacing: .03em;
 }
 
+.bio-desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--cream);
+  opacity: 0.92;
+}
+
+@media (min-width: 480px) {
+  .bio-desc {
+    font-size: 15px;
+  }
+}
+
 .bio-lines {
   display: flex;
   flex-direction: column;
@@ -1063,14 +1078,15 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 @media (min-width: 640px) {
   .wishes-grid {
-    grid-template-columns: 0.4fr 0.6fr;
+    grid-template-columns: 1fr 1fr;
     gap: 18px;
+    align-items: stretch;
   }
 }
 
 @media (min-width: 860px) {
   .wishes-grid {
-    grid-template-columns: 0.35fr 0.65fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -1098,7 +1114,7 @@ textarea {
   color: #fff;
   padding: 12px;
   outline: none;
-  min-height: 120px;
+  min-height: 200px;
   resize: vertical;
   box-shadow: 0 12px 26px rgba(0,0,0,.30);
   font-family: var(--font-main);
