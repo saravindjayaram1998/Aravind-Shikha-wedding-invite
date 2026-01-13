@@ -297,10 +297,10 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 /* ----- Logo Banner (ENLARGED to fill container) ----- */
 .logo-banner {
   position: relative;
-  width: min(400px, 85vw);
-  height: clamp(240px, 44vh, 400px);
+  width: min(95vw, 520px);
+  aspect-ratio: 2.5 / 1;
   margin: 0 auto 6px;
-  padding: 4px; /* Minimal padding so logo fills space */
+  padding: 4px;
   border-radius: 18px;
   background: rgba(10,12,18,.52);
   border: 1px solid rgba(255, 211, 106, .55);
@@ -321,15 +321,13 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 @media (min-width: 480px) {
   .logo-banner {
-    width: min(580px, 88vw);
-    height: clamp(280px, 52vh, 480px);
+    width: min(94vw, 700px);
   }
 }
 
 @media (min-width: 768px) {
   .logo-banner {
-    width: min(720px, 90vw);
-    height: clamp(360px, 60vh, 560px);
+    width: min(92vw, 900px);
   }
 }
 
@@ -448,8 +446,8 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 /* CHANGE: Names increased by 50% */
 .invite-text--simple .invite-line--name {
-  /* Original: clamp(22px, 5.5vw, 32px) → Now 1.5x larger */
-  font-size: clamp(33px, 8.25vw, 48px);
+  /* 1.5x increase from previous */
+  font-size: clamp(50px, 12vw, 72px);
   font-weight: 800;
   letter-spacing: .02em;
   color: var(--gold-royal);
@@ -469,13 +467,13 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   color: var(--cream);
 }
 
-/* CHANGE: "Weds" styled - italic, lighter gold, less prominent */
+/* "Weds" styled - non-italic, lighter gold */
 .invite-text--simple .invite-line--weds {
   font-size: clamp(20px, 5vw, 32px);
   font-weight: 600;
-  font-style: italic;
+  font-style: normal;
   letter-spacing: .06em;
-  color: var(--gold-light); /* Lighter/softer gold */
+  color: var(--gold-light);
   opacity: 0.9;
 }
 
@@ -1729,12 +1727,11 @@ textarea {
   }
   
   .logo-banner {
-    width: 92vw;
-    height: clamp(200px, 36vh, 280px);
+    width: 96vw;
   }
   
   .invite-text--simple .invite-line--name {
-    font-size: 26px;
+    font-size: 39px;
   }
   
   .datebox__title,
