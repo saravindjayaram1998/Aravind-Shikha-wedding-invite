@@ -58,13 +58,9 @@ font-family: var(--font-main);
 }
 .section--hero{ padding-top: 82px; }
 
-.scrim{
-  position:absolute; inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.70));
-  z-index: 1;
-}
-.scrim--dark{ background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.86)); }
-.scrim--hero{ background: radial-gradient(1200px 700px at 50% 25%, rgba(0,0,0,.20), rgba(0,0,0,.86)); }
+.scrim{ position:absolute; inset:0; pointer-events:none; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.60)); }
+.scrim--dark{ background: linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.72)); }
+.scrim--hero{ background: radial-gradient(1200px 700px at 50% 25%, rgba(0,0,0,.16), rgba(0,0,0,.72)); }
 
 .section > .container{ position:relative; z-index:2; }
 
@@ -375,10 +371,12 @@ font-family: var(--font-main);
 
 /* Stack rows on smaller screens (also covers browsers that default to 980px viewport) */
 @media (max-width: 1024px){
-  .event-row{ grid-template-columns: 1fr; }
+  /* Keep events in 3-column “table” layout on mobile; allow horizontal scroll if needed */
+  .events-table{ overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom: 6px; }
+  .event-row{ grid-template-columns: 140px 220px minmax(340px, 1fr); min-width: 720px; }
   .time-pill{ width: fit-content; text-align:left; padding: 9px 12px; }
-  .event-chip{ width: 100%; }
 }
+
 
 
 /* Couple carousel (larger photos) */
@@ -953,6 +951,10 @@ h1,h2,h3,h4,h5,h6,.brand,.hero__title,.hero__subtitle,.section__title{
   font-size: clamp(14px, 2vw, 22px);
   line-height: 1.18;
   text-shadow: 0 10px 30px rgba(0,0,0,.45);
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 .intro-parents .parent-line{ margin: 0; }
 
