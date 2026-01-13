@@ -297,10 +297,10 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 /* ----- Logo Banner (ENLARGED to fill container) ----- */
 .logo-banner {
   position: relative;
-  width: min(95vw, 520px);
-  aspect-ratio: 2.51 / 1;
+  width: min(95vw, 420px);
+  aspect-ratio: 2.25 / 1;
   margin: 0 auto 6px;
-  padding: 0;
+  padding: 12px;
   border-radius: 18px;
   background: rgba(10,12,18,.52);
   border: 1px solid rgba(255, 211, 106, .55);
@@ -321,13 +321,13 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 @media (min-width: 480px) {
   .logo-banner {
-    width: min(94vw, 700px);
+    width: min(94vw, 520px);
   }
 }
 
 @media (min-width: 768px) {
   .logo-banner {
-    width: min(92vw, 900px);
+    width: min(92vw, 650px);
   }
 }
 
