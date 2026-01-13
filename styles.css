@@ -298,9 +298,9 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 .logo-banner {
   position: relative;
   width: min(95vw, 520px);
-  aspect-ratio: 2.5 / 1;
+  aspect-ratio: 2.51 / 1;
   margin: 0 auto 6px;
-  padding: 4px;
+  padding: 0;
   border-radius: 18px;
   background: rgba(10,12,18,.52);
   border: 1px solid rgba(255, 211, 106, .55);
