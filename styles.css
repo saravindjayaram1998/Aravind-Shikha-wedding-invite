@@ -49,6 +49,7 @@ font-family: var(--font-main);
 /* Sections */
 .section{
   position:relative;
+  /* Desktop default: full-height sections */
   min-height: 100vh;
   min-height: 100svh;
   min-height: 100dvh;
@@ -158,11 +159,9 @@ font-family: var(--font-main);
 .countdown--hero{
   display:grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
   width: min(760px, 100%);
-  margin-top: 1px; /* reduced */
-
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .countbox{
   padding:10px 8px;
@@ -172,12 +171,24 @@ font-family: var(--font-main);
   text-align:center;
   box-shadow: var(--shadow);
 }
-.countbox__num{ font-weight:900; font-size:30px; color: var(--gold-soft); line-height:1.05; }
-.countbox__label{ margin-top:2px; letter-spacing:.14em; text-transform:uppercase; font-size:10px; opacity:.9; }
+.countbox__num{
+  font-weight:900;
+  font-size: clamp(30px, 5vw, 48px); /* ~50% larger on desktop while staying responsive */
+  color: var(--gold-soft);
+  line-height:1.05;
+}
+.countbox__label{
+  margin-top:2px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-size: clamp(10px, 1.6vw, 14px);
+  opacity:.9;
+}
 
 @media (max-width: 480px){
-  .countbox__num{ font-size: 22px; }
-  .countbox__label{ font-size: 9px; }
+  .countdown--hero{ gap: 6px; margin-top: 6px; }
+  .countbox__num{ font-size: 30px; }
+  .countbox__label{ font-size: 11px; }
   .countbox{ padding:8px 6px; }
 }
 
@@ -410,12 +421,24 @@ font-family: var(--font-main);
 }
 .details-text{ opacity:.92; line-height: 1.45; }
 
-/* Stack rows on smaller screens (also covers browsers that default to 980px viewport) */
-@media (max-width: 1024px){
-  /* Keep events in 3-column “table” layout on mobile; allow horizontal scroll if needed */
+/* Tablets: keep a true 3-column table and allow horizontal scroll if needed */
+@media (max-width: 1024px) and (min-width: 701px){
   .events-table{ overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom: 6px; }
   .event-row{ grid-template-columns: 140px 220px minmax(340px, 1fr); min-width: 720px; }
   .time-pill{ width: fit-content; text-align:left; padding: 9px 12px; }
+}
+
+/* Phones: keep a “table-like” layout without forcing horizontal scroll */
+@media (max-width: 700px){
+  .events-table{ overflow: visible; padding-bottom: 0; }
+  .event-row{
+    grid-template-columns: 118px 1fr;
+    min-width: 0;
+    gap: 10px;
+  }
+  .time-pill{ text-align:center; width: 100%; }
+  .event-chip{ width: 100%; }
+  .details-card{ grid-column: 1 / -1; }
 }
 
 
@@ -697,11 +720,14 @@ html, body, button, input, textarea { font-family: var(--font-main); }
 
 /* Mobile hero fit: keep content up to CTA visible */
 @media (max-width: 600px){
+  /* Avoid “desktop zoomed out” feel by letting content define height on phones */
+  .section{ min-height: auto; }
   .section--hero{ padding: 64px 0 32px; }
   .hero{ gap: 10px; }
   .countdown--hero{ gap: 8px; margin-top: 8px; }
   .countbox{ min-width: 60px; padding: 8px 8px; }
-  .countbox__num{ font-size: 20px; }
+  /* Make countdown more prominent on mobile */
+  .countbox__num{ font-size: 28px; }
   .countbox__label{ font-size: 11px; }
   .invite-text{ margin-top: 8px; }
   .invite-text .line1{ font-size: clamp(12px, 3.2vw, 15px); white-space: nowrap; }
@@ -1161,14 +1187,26 @@ h1,h2,h3,h4,h5,h6,.brand,.hero__title,.hero__subtitle,.section__title{
 .logo-banner{
   padding: 8px !important;               /* minimal inset so logo nearly fills */
   width: min(680px, 94vw) !important;    /* allow larger logo on mobile/desktop */
+  /* Reduce perceived banner height on mobile while keeping the logo sharp */
+  aspect-ratio: 16 / 10;
+  max-height: 360px;
 }
 .logo-banner .hero-logo{
   width: 100% !important;
+  height: 100% !important;
   max-width: 100% !important;
+  max-height: 100% !important;
   margin: 0 !important;
   display: block !important;
+  object-fit: contain;
 }
 /* slightly tighter on very small phones */
 @media (max-width: 420px){
-  .logo-banner{ width: 96vw !important; padding: 6px !important; border-radius: 18px !important; }
+  .logo-banner{
+    width: 96vw !important;
+    padding: 6px !important;
+    border-radius: 18px !important;
+    aspect-ratio: 16 / 9;
+    max-height: 280px;
+  }
 }
