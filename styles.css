@@ -297,9 +297,10 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 }
 
 /* ----- Logo Banner (ENLARGED to fill container) ----- */
-.logo-banner {
+.logo-banner {  margin-top: 18px;
+
   position: relative;
-  width: min(95vw, 840px);
+  width: min(95vw, 1680px);
   aspect-ratio: 2.69 / 1;
   margin: 0 auto 6px;
   padding: 12px;
@@ -319,13 +320,13 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 @media (min-width: 480px) {
   .logo-banner {
-    width: min(94vw, 1040px);
+    width: min(94vw, 2080px);
   }
 }
 
 @media (min-width: 768px) {
   .logo-banner {
-    width: min(92vw, 1300px);
+    width: min(92vw, 2600px);
   }
 }
 
@@ -857,14 +858,14 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 .section-break__line {
   height: 1px;
-  width: min(200px, 28vw);
+  width: min(400px, 28vw);
   background: linear-gradient(90deg, rgba(255,211,106,0), rgba(255,211,106,.85), rgba(255,211,106,0));
   opacity: .9;
 }
 
 @media (min-width: 480px) {
   .section-break__line {
-    width: min(320px, 34vw);
+    width: min(640px, 34vw);
   }
 }
 
@@ -1366,7 +1367,7 @@ textarea {
 }
 
 .vol__slider {
-  width: min(80px, 18vw);
+  width: min(160px, 18vw);
   accent-color: var(--gold-royal);
 }
 
@@ -1428,7 +1429,7 @@ textarea {
 }
 
 .bouquet {
-  width: min(280px, 60vw);
+  width: min(560px, 60vw);
   height: auto;
   display: block;
   margin: 0 auto 6px;
@@ -1437,7 +1438,7 @@ textarea {
 
 @media (min-width: 480px) {
   .bouquet {
-    width: min(360px, 70vw);
+    width: min(720px, 70vw);
   }
 }
 
@@ -1784,7 +1785,7 @@ textarea {
 
   /* keep the square logo prominent but not too tall */
   .logo-banner{
-    width: min(92vw, 2880px);
+    width: min(92vw, 5760px);
     max-height: 28vh;
   }
 
