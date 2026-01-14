@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   z-index: 50;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between; /* Music on left, Menu on right */
   padding: 10px 12px;
   background: rgba(0,0,0,.20);
   border-bottom: 1px solid rgba(255,255,255,.08);
@@ -296,7 +296,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   }
 }
 
-/* ----- Logo Banner (CENTERED, 200% enlarged) ----- */
+/* ----- Logo Banner (CENTERED, 140% enlarged - 30% reduced from 200%) ----- */
 .logo-banner {
   position: relative;
   width: 100%;
@@ -315,11 +315,10 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   display: none;
 }
 
-/* Logo: 200% of original base size, centered */
+/* Logo: 140% of original base size (30% reduced from 200%), centered */
 .logo-banner .hero-logo {
   position: relative;
   z-index: 2;
-  /* Base size doubled: was ~45vw effective, now 90vw capped at reasonable max */
   width: min(90vw, 800px);
   height: auto;
   max-width: none;
@@ -327,7 +326,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   display: block;
   margin: 0 auto; /* Explicit horizontal centering */
   filter: drop-shadow(0 14px 30px rgba(0,0,0,.45));
-  transform: scale(2); /* 200% scale */
+  transform: scale(1.4); /* 140% scale (30% less than 200%) */
   transform-origin: center center;
 }
 
@@ -1027,7 +1026,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 .bio-desc {
   margin: 0;
-  font-size: 21px; /* 1.5x original 14px */
+  font-size: 15px; /* 30% reduced from 21px */
   line-height: 1.6;
   color: #ffffff; /* White color */
   opacity: 1;
@@ -1035,7 +1034,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 @media (min-width: 480px) {
   .bio-desc {
-    font-size: 22.5px; /* 1.5x original 15px */
+    font-size: 16px; /* 30% reduced from 22.5px */
   }
 }
 
@@ -1292,23 +1291,17 @@ textarea {
 
 /* ----- Music Controls ----- */
 .music-controls {
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  z-index: 60;
+  /* Now positioned inside header, not fixed */
+  position: static;
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-end;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
 }
 
 @media (min-width: 480px) {
   .music-controls {
-    flex-direction: row;
-    right: 16px;
-    bottom: 16px;
     gap: 10px;
-    align-items: center;
   }
 }
 
@@ -1316,18 +1309,19 @@ textarea {
   padding: 8px 10px;
   border-radius: 999px;
   border: none;
-  background: rgba(0,0,0,.45);
+  background: rgba(0,0,0,.35);
   color: #fff;
   font-weight: 900;
-  font-size: 11px;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
   cursor: pointer;
-  backdrop-filter: blur(10px);
 }
 
 @media (min-width: 480px) {
   .music-toggle {
     padding: 10px 12px;
-    font-size: inherit;
+    font-size: 11px;
   }
 }
 
@@ -1339,18 +1333,17 @@ textarea {
 .vol {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 10px;
+  gap: 4px;
+  padding: 6px 8px;
   border-radius: 999px;
   border: none;
-  background: rgba(0,0,0,.45);
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.35);
 }
 
 @media (min-width: 480px) {
   .vol {
-    gap: 8px;
-    padding: 10px 12px;
+    gap: 6px;
+    padding: 8px 10px;
   }
 }
 
@@ -1358,30 +1351,30 @@ textarea {
   font-weight: 900;
   letter-spacing: .10em;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 9px;
   opacity: .9;
 }
 
 @media (min-width: 480px) {
   .vol__label {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 
 .vol__slider {
-  width: min(160px, 18vw);
+  width: 50px;
   accent-color: var(--gold-royal);
 }
 
 @media (min-width: 480px) {
   .vol__slider {
-    width: 100px;
+    width: 70px;
   }
 }
 
 @media (min-width: 768px) {
   .vol__slider {
-    width: 120px;
+    width: 90px;
   }
 }
 
@@ -1745,7 +1738,7 @@ textarea {
   
   .logo-banner .hero-logo {
     width: min(45vw, 200px);
-    transform: scale(2);
+    transform: scale(1.4);
   }
   
   .invite-text--simple .invite-line--name {
@@ -1755,15 +1748,6 @@ textarea {
   .datebox__title,
   .datebox__sub {
     font-size: 12px;
-  }
-  
-  .music-controls {
-    right: 6px;
-    bottom: 6px;
-  }
-  
-  .vol__slider {
-    width: 60px;
   }
   
   .tab {
@@ -1789,7 +1773,7 @@ textarea {
   /* keep the logo prominent but not too tall on short screens */
   .logo-banner .hero-logo{
     max-height: 28vh;
-    transform: scale(1.5); /* Slightly smaller scale on short viewports */
+    transform: scale(1.05); /* Reduced scale on short viewports */
   }
 
   .section-break--hero{ margin: 10px 0 4px; }
@@ -1843,7 +1827,7 @@ textarea {
 
 /* Extra-tight devices */
 @media (max-height: 700px){
-  .logo-banner .hero-logo{ max-height: 24vh; transform: scale(1.3); }
+  .logo-banner .hero-logo{ max-height: 24vh; transform: scale(0.9); }
   .countbox{ padding: 7px 9px; }
   .invite-line--name{ font-size: clamp(28px, 7.4vw, 42px); }
   .datebox{ margin: 8px auto 8px; }
@@ -1853,36 +1837,52 @@ textarea {
    Wishes: simple flowing box
    ========================= */
 .wish-cloud{
-  /* Curved rectangle, light grey fill, no outline, no decorative effects */
-  background: rgba(230,230,230,.92);
-  border: none;
-  box-shadow: none;
+  /* Lighter semi-transparent grey that complements dark background */
+  background: rgba(60, 60, 70, 0.75);
+  border: 1px solid rgba(255, 211, 106, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
   overflow: auto;
+  backdrop-filter: blur(4px);
+  padding: 8px 0;
 }
 
-/* Each wish as simple text line (no circles, no absolute positioning) */
+/* Each wish as simple text line with alternating alignment */
 .cloud-wish{
   position: static;
   display: block;
   max-width: 100%;
-  padding: 10px 12px;
+  padding: 12px 16px;
   margin: 0;
   border: none;
-  border-radius: 12px;
+  border-radius: 0;
   background: transparent;
-  color: #111;
-  font-weight: 600;
-  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  font-style: italic; /* Fancy italicized text */
+  line-height: 1.4;
   transform: none;
   box-shadow: none;
   user-select: text;
 }
 
+/* Odd comments (1st, 3rd, 5th...) - left aligned */
+.cloud-wish:nth-child(odd){
+  text-align: left;
+}
+
+/* Even comments (2nd, 4th, 6th...) - right aligned */
+.cloud-wish:nth-child(even){
+  text-align: right;
+}
+
 .cloud-wish + .cloud-wish{
-  border-top: 1px solid rgba(0,0,0,.10);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .cloud-wish--empty{
   font-weight: 500;
+  font-style: normal;
   opacity: .75;
+  text-align: center !important;
 }

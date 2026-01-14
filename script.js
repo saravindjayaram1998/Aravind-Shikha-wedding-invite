@@ -287,9 +287,9 @@
 
   let lastWishes = [];
 
-  // Render wishes as a simple list
+  // Render wishes as a simple list (latest 10 only)
   function renderWishes(items){
-    const list = (items || []).slice(0, 20);
+    const list = (items || []).slice(0, 10); // Show only latest 10 comments
     cloud.innerHTML = "";
     
     if(list.length === 0){

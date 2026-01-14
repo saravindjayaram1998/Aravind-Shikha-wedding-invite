@@ -24,8 +24,31 @@
   </video>
   <div aria-hidden="true" class="site-bg-fallback"></div>
 
-  <!-- Header / Menu -->
+  <!-- Header / Menu with Music Controls -->
   <header class="topbar topbar--minimal">
+    <!-- Music controls on the left -->
+    <div aria-label="Music controls" class="music-controls">
+      <button 
+        aria-label="Toggle music" 
+        class="music-toggle" 
+        id="musicToggle" 
+        type="button"
+      >Music: Off</button>
+      <div class="vol">
+        <span aria-hidden="true" class="vol__label">Vol</span>
+        <input 
+          aria-label="Music volume" 
+          class="vol__slider" 
+          id="volumeSlider" 
+          max="100" 
+          min="0" 
+          type="range" 
+          value="10"
+        />
+      </div>
+    </div>
+    
+    <!-- Menu button on the right -->
     <button 
       aria-expanded="false" 
       aria-haspopup="true" 
@@ -50,26 +73,6 @@
   <audio id="bgMusic" loop preload="auto">
     <source src="assets/BG%20Music.mp3" type="audio/mpeg"/>
   </audio>
-  <div aria-label="Music controls" class="music-controls">
-    <button 
-      aria-label="Toggle music" 
-      class="music-toggle" 
-      id="musicToggle" 
-      type="button"
-    >Music: Off</button>
-    <div class="vol">
-      <span aria-hidden="true" class="vol__label">Vol</span>
-      <input 
-        aria-label="Music volume" 
-        class="vol__slider" 
-        id="volumeSlider" 
-        max="100" 
-        min="0" 
-        type="range" 
-        value="10"
-      />
-    </div>
-  </div>
 
   <!-- Google Sheets handles wishes storage -->
 
@@ -351,6 +354,9 @@
             <div class="carousel__item">
               <img alt="Photo 5" class="carousel__img" data-basename="Photo 5"/>
             </div>
+            <div class="carousel__item">
+              <img alt="Photo 6" class="carousel__img" data-basename="Photo 6"/>
+            </div>
           </div>
           <button 
             aria-label="Next photo" 
@@ -363,7 +369,7 @@
           aria-label="Photo selector" 
           class="carousel__range" 
           id="carouselRange" 
-          max="5" 
+          max="6" 
           min="1" 
           step="1" 
           type="range" 
@@ -378,7 +384,7 @@
         </div>
         <div class="bio-card">
           <h3 class="bio-title">Aravind</h3>
-          <p class="bio-desc">Runs on workouts, says no to chai and coffee but yes to gallons of milk. A self-proclaimed Sheldon Cooper, witty to the core and firm believer of fairness and loyalty.</p>
+          <p class="bio-desc">Likes to run, skip and workout, can eat dosa all day and drink gallons of milk. A self-proclaimed Sheldon Cooper, witty to the core and firm believer of fairness and loyalty.</p>
         </div>
       </div>
 
