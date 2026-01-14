@@ -108,8 +108,10 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 }
 
 .section--hero {
-  padding-top: 64px;
-  padding-bottom: 32px;
+  /* Fit entire hero (down to CTA) into the first viewport on common mobiles */
+  padding-top: clamp(18px, 4vh, 48px);
+  padding-bottom: clamp(14px, 3vh, 28px);
+  min-height: 100vh;
 }
 
 @media (min-width: 768px) {
@@ -295,29 +297,20 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 }
 
 /* ----- Logo Banner (ENLARGED to fill container) ----- */
-/* ----- Logo Banner (CENTERED SQUARE LOGO) ----- */
-.logo-banner{
+.logo-banner {
   position: relative;
-  width: min(78vw, 520px);
-  aspect-ratio: 1 / 1;
-  margin: 0 auto 8px;
-  padding: 0;
+  width: min(95vw, 840px);
+  aspect-ratio: 2.69 / 1;
+  margin: 0 auto 6px;
+  padding: 12px;
+  border-radius: 18px;
   background: transparent;
   border: none;
   box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
-  outline: 0;
-}
-
-@media (min-width: 480px){
-  .logo-banner{ width: min(70vw, 540px); }
-}
-
-@media (min-width: 768px){
-  .logo-banner{ width: min(520px, 34vw); }
+  overflow: hidden;
 }
 
 .logo-banner::before {
@@ -337,16 +330,14 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 }
 
 /* CHANGE: Logo fills the entire container */
-/* Logo image: keep perfectly centered */
-.logo-banner .hero-logo{
+.logo-banner .hero-logo {
+  position: relative;
+  z-index: 2;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center;
   display: block;
   margin: 0;
-  border: 0;
-  outline: 0;
   filter: drop-shadow(0 14px 30px rgba(0,0,0,.45));
 }
 
@@ -1787,7 +1778,69 @@ textarea {
   }
 }
 
-/* Hero-specific separator spacing */
-.section-break--hero{
-  margin: 14px 0 6px;
+/* ----- Compact hero layout: reduce vertical footprint on short viewports ----- */
+@media (max-height: 820px){
+  .hero--center{ gap: 6px; }
+
+  /* keep the square logo prominent but not too tall */
+  .logo-banner{
+    width: min(62vw, 360px);
+    max-height: 28vh;
+  }
+
+  .section-break--hero{ margin: 10px 0 4px; }
+
+  .countdown--hero{
+    margin-top: 6px;
+    gap: 6px;
+    max-width: 360px;
+  }
+  .countbox{
+    padding: 8px 10px;
+  }
+  .countbox__num{
+    font-size: clamp(18px, 5vw, 34px);
+  }
+  .countbox__label{
+    font-size: 11px;
+  }
+
+  .invite-text--simple{ margin-top: 8px; }
+  .invite-line--name{
+    font-size: clamp(30px, 7.8vw, 46px);
+  }
+  .invite-line--role{
+    font-size: clamp(12px, 3.4vw, 18px);
+  }
+  .invite-line--parents{
+    margin-top: 4px;
+    font-size: clamp(12px, 3.5vw, 18px);
+  }
+  .invite-gap{ height: 6px; }
+  .invite-line--weds{
+    font-size: clamp(16px, 4.4vw, 24px);
+  }
+
+  .datebox{
+    margin: 10px auto 10px;
+    padding: 10px 12px;
+  }
+  .datebox__title{
+    font-size: clamp(16px, 4.2vw, 22px);
+  }
+  .datebox__sub{
+    font-size: clamp(12px, 3.5vw, 18px);
+  }
+
+  .btn{
+    padding: 10px 14px;
+  }
+}
+
+/* Extra-tight devices */
+@media (max-height: 700px){
+  .logo-banner{ max-height: 24vh; }
+  .countbox{ padding: 7px 9px; }
+  .invite-line--name{ font-size: clamp(28px, 7.4vw, 42px); }
+  .datebox{ margin: 8px auto 8px; }
 }
