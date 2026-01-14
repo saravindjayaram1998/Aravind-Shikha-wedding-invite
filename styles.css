@@ -296,11 +296,11 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   }
 }
 
-/* ----- Logo Banner (CENTERED, 140% enlarged - 30% reduced from 200%) ----- */
+/* ----- Logo Banner (CENTERED, 168% enlarged - increased 20% from 140%) ----- */
 .logo-banner {
   position: relative;
   width: 100%;
-  margin: 18px auto 6px;
+  margin: 18px auto 0; /* Reduced bottom margin */
   padding: 12px;
   background: transparent;
   border: none;
@@ -315,7 +315,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   display: none;
 }
 
-/* Logo: 140% of original base size (30% reduced from 200%), centered */
+/* Logo: 168% of original base size (20% increase from 140%), centered */
 .logo-banner .hero-logo {
   position: relative;
   z-index: 2;
@@ -326,7 +326,7 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   display: block;
   margin: 0 auto; /* Explicit horizontal centering */
   filter: drop-shadow(0 14px 30px rgba(0,0,0,.45));
-  transform: scale(1.4); /* 140% scale (30% less than 200%) */
+  transform: scale(1.68); /* 168% scale (20% increase from 140%) */
   transform-origin: center center;
 }
 
@@ -884,6 +884,12 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
 
 .section-break--thin {
   padding: 10px 0;
+}
+
+/* Section break after hero logo - reduced gap */
+.section-break--hero {
+  padding: 4px 0 10px; /* Minimal top padding to bring closer to logo */
+  margin-top: -8px; /* Pull up closer to logo */
 }
 
 /* ----- Carousel ----- */
@@ -1738,7 +1744,7 @@ textarea {
   
   .logo-banner .hero-logo {
     width: min(45vw, 200px);
-    transform: scale(1.4);
+    transform: scale(1.68);
   }
   
   .invite-text--simple .invite-line--name {
@@ -1773,7 +1779,7 @@ textarea {
   /* keep the logo prominent but not too tall on short screens */
   .logo-banner .hero-logo{
     max-height: 28vh;
-    transform: scale(1.05); /* Reduced scale on short viewports */
+    transform: scale(1.26); /* Reduced scale on short viewports */
   }
 
   .section-break--hero{ margin: 10px 0 4px; }
@@ -1827,7 +1833,7 @@ textarea {
 
 /* Extra-tight devices */
 @media (max-height: 700px){
-  .logo-banner .hero-logo{ max-height: 24vh; transform: scale(0.9); }
+  .logo-banner .hero-logo{ max-height: 24vh; transform: scale(1.1); }
   .countbox{ padding: 7px 9px; }
   .invite-line--name{ font-size: clamp(28px, 7.4vw, 42px); }
   .datebox{ margin: 8px auto 8px; }
@@ -1844,7 +1850,8 @@ textarea {
   box-shadow: 0 8px 32px rgba(0,0,0,.3);
   overflow: auto;
   backdrop-filter: blur(4px);
-  padding: 8px 0;
+  padding: 6px 0;
+  max-height: 320px; /* Fixed height to contain 10 comments */
 }
 
 /* Each wish as simple text line with alternating alignment */
@@ -1852,7 +1859,7 @@ textarea {
   position: static;
   display: block;
   max-width: 100%;
-  padding: 12px 16px;
+  padding: 6px 12px; /* Reduced padding */
   margin: 0;
   border: none;
   border-radius: 0;
@@ -1860,10 +1867,21 @@ textarea {
   color: rgba(255, 255, 255, 0.95);
   font-weight: 500;
   font-style: italic; /* Fancy italicized text */
-  line-height: 1.4;
+  font-size: 13px; /* Smaller font to fit 10 comments */
+  line-height: 1.35;
   transform: none;
   box-shadow: none;
   user-select: text;
+}
+
+@media (min-width: 480px) {
+  .cloud-wish {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  .wish-cloud {
+    max-height: 360px;
+  }
 }
 
 /* Odd comments (1st, 3rd, 5th...) - left aligned */
