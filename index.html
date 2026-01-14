@@ -71,8 +71,7 @@
     </div>
   </div>
 
-  <!-- Supabase client for wishes -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Google Sheets handles wishes storage -->
 
   <!-- SECTION 1: Landing / Hero -->
   <section class="section section--hero" id="invite">
@@ -352,9 +351,6 @@
             <div class="carousel__item">
               <img alt="Photo 5" class="carousel__img" data-basename="Photo 5"/>
             </div>
-            <div class="carousel__item">
-              <img alt="Photo 6" class="carousel__img" data-basename="Photo 6"/>
-            </div>
           </div>
           <button 
             aria-label="Next photo" 
@@ -367,7 +363,7 @@
           aria-label="Photo selector" 
           class="carousel__range" 
           id="carouselRange" 
-          max="6" 
+          max="5" 
           min="1" 
           step="1" 
           type="range" 

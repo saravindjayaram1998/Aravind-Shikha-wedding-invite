@@ -267,17 +267,17 @@
   timer = setInterval(stepClockwise, 5000);
 })();
 
-// Wishes word-cloud
+// Wishes - Google Sheets Integration
 (function wishes(){
-  const SUPABASE_URL = "";      // <-- paste here
-  const SUPABASE_ANON_KEY = ""; // <-- paste here
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEPANua7OgtA_oHnIJKrN_ma2XsCX3T91FlVZePTuxM57eqD8y3U02SSgWN2DWcGplnA/exec";
 
   const cloud = document.getElementById('wishCloud');
   const form = document.getElementById('wishForm');
   const msg = document.getElementById('wishMessage');
+  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
   if(!cloud || !form || !msg) return;
 
-  const demo = [
+  const defaultWishes = [
     "Wishing you both a lifetime of love and happiness.",
     "Congratulations! May your home be filled with joy.",
     "Best wishes for a beautiful journey together.",
@@ -285,151 +285,106 @@
     "Blessings and love to the wonderful couple."
   ];
 
-  function rand(min, max){ return Math.random() * (max - min) + min; }
+  let lastWishes = [];
 
+  // Render wishes as a simple list
   function renderWishes(items){
-    const list = (items || []).slice(0, 26);
+    const list = (items || []).slice(0, 20);
     cloud.innerHTML = "";
-    cloud.style.minHeight = cloud.style.minHeight || "200px";
+    
+    if(list.length === 0){
+      const empty = document.createElement('div');
+      empty.className = 'cloud-wish cloud-wish--empty';
+      empty.textContent = 'Be the first to leave a blessing!';
+      cloud.appendChild(empty);
+      return;
+    }
 
     list.forEach((text) => {
       const el = document.createElement('div');
       el.className = 'cloud-wish';
-      const vw = window.innerWidth;
-      const minFs = vw < 480 ? 10 : 12;
-      const maxFs = vw < 480 ? 14 : 18;
-      el.style.setProperty('--fs', `${Math.round(rand(minFs, maxFs))}px`);
-      el.style.setProperty('--rot', `${Math.round(rand(-10, 10))}deg`);
-
       const inner = document.createElement('div');
       inner.className = 'cloud-wish__text';
       inner.textContent = String(text).trim();
       el.appendChild(inner);
-
       cloud.appendChild(el);
     });
-
-    const els = Array.from(cloud.querySelectorAll('.cloud-wish'));
-    const W = Math.max(1, cloud.clientWidth);
-    const H = Math.max(200, cloud.clientHeight);
-
-    const placed = [];
-    const pad = 8;
-    const cx = W / 2;
-    const cy = H / 2;
-
-    function collides(x, y, w, h){
-      return placed.some(b => !(x + w + pad < b.x || x - pad > b.x + b.w || y + h + pad < b.y || y - pad > b.y + b.h));
-    }
-
-    els.forEach((el, i) => {
-      const w = el.offsetWidth;
-      const h = el.offsetHeight;
-
-      let ok = false;
-
-      for(let t = 0; t < 1500; t++){
-        const angle = 0.55 * t;
-        const radius = 2 + t * 0.42;
-        const x = cx + Math.cos(angle) * radius - w / 2;
-        const y = cy + Math.sin(angle) * radius - h / 2;
-
-        if(x < 4 || y < 4 || x + w > W - 4 || y + h > H - 4) continue;
-        if(!collides(x, y, w, h)){
-          el.style.left = `${x}px`;
-          el.style.top = `${y}px`;
-          placed.push({x, y, w, h});
-          ok = true;
-          break;
-        }
-      }
-
-      if(!ok){
-        for(let tries = 0; tries < 250; tries++){
-          const x = 4 + Math.random() * (W - w - 8);
-          const y = 4 + Math.random() * (H - h - 8);
-          if(!collides(x, y, w, h)){
-            el.style.left = `${x}px`;
-            el.style.top = `${y}px`;
-            placed.push({x, y, w, h});
-            ok = true;
-            break;
-          }
-        }
-      }
-
-      if(!ok){
-        const x = 4 + (i % 2) * (W * 0.48);
-        const y = 4 + Math.floor(i / 2) * (h + 10);
-        el.style.left = `${Math.max(4, Math.min(W - w - 4, x))}px`;
-        el.style.top = `${Math.max(4, Math.min(H - h - 4, y))}px`;
-        placed.push({x, y, w, h});
-      }
-    });
   }
 
-  async function loadFromSupabase(){
-    try{
-      if(!SUPABASE_URL || !SUPABASE_ANON_KEY || !window.supabase){
-        lastWishes = demo.slice();
+  // Load wishes from Google Sheets
+  async function loadWishes(){
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL);
+      const data = await response.json();
+      
+      if(data.success && data.wishes && data.wishes.length > 0){
+        lastWishes = data.wishes.map(w => w.message).filter(m => m && m.trim());
         renderWishes(lastWishes);
-        return null;
+      } else {
+        // Show default wishes if none exist yet
+        lastWishes = defaultWishes.slice();
+        renderWishes(lastWishes);
       }
-      const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-      const { data, error } = await client
-        .from('wishes')
-        .select('message, created_at')
-        .order('created_at', { ascending: false })
-        .limit(40);
-
-      if(error) throw error;
-
-      lastWishes = (data || []).map(x => x.message);
+    } catch(e) {
+      console.error('Failed to load wishes:', e);
+      lastWishes = defaultWishes.slice();
       renderWishes(lastWishes);
-      return client;
-    }catch(e){
-      lastWishes = demo.slice();
-      renderWishes(lastWishes);
-      return null;
     }
   }
 
-  let clientPromise = loadFromSupabase();
-  let lastWishes = demo.slice();
+  // Submit a new wish to Google Sheets
+  async function submitWish(message){
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Required for Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: message })
+      });
+      
+      // With no-cors, we can't read the response, so assume success
+      return true;
+    } catch(e) {
+      console.error('Failed to submit wish:', e);
+      return false;
+    }
+  }
 
-  let resizeT = null;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeT);
-    resizeT = setTimeout(() => renderWishes(lastWishes), 160);
-  });
+  // Initial load
+  loadWishes();
 
+  // Form submission
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const text = (msg.value || "").trim();
     if(!text) return;
 
-    const client = await clientPromise;
-    if(!client){
-      demo.unshift(text);
-      lastWishes = demo.slice();
-      renderWishes(lastWishes);
-      msg.value = "";
-      return;
+    // IMMEDIATELY show the new wish at the top (before any network request)
+    lastWishes = [text, ...lastWishes];
+    renderWishes(lastWishes);
+    msg.value = "";
+
+    // Disable button while submitting to server
+    if(submitBtn){
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Saving...';
     }
 
-    try{
-      const { error } = await client.from('wishes').insert([{ message: text }]);
-      if(error) throw error;
-      msg.value = "";
-      lastWishes = [text, ...lastWishes];
-      renderWishes(lastWishes);
-      clientPromise = loadFromSupabase();
-    }catch{
-      demo.unshift(text);
-      lastWishes = demo.slice();
-      renderWishes(lastWishes);
-      msg.value = "";
+    // Submit to Google Sheets in background
+    await submitWish(text);
+
+    // Re-enable button
+    if(submitBtn){
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send wish';
     }
+
+    // Reload from server after a short delay to sync with other users
+    setTimeout(loadWishes, 3000);
   });
+
+  // Reload wishes periodically (every 30 seconds) to show new ones from others
+  setInterval(loadWishes, 30000);
 })();
