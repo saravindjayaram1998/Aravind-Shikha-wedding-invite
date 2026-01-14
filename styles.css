@@ -1784,7 +1784,7 @@ textarea {
 
   /* keep the square logo prominent but not too tall */
   .logo-banner{
-    width: min(62vw, 360px);
+    width: min(62vw, 720px);
     max-height: 28vh;
   }
 
