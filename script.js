@@ -142,6 +142,8 @@
     let i = 0;
     function next(){
       if(i >= sources.length){
+        const item = img.closest && img.closest('.carousel__item');
+        if(item){ item.remove(); }
         img.style.display = 'none';
         return;
       }
@@ -286,85 +288,29 @@
   function rand(min, max){ return Math.random() * (max - min) + min; }
 
   function renderWishes(items){
-    const list = (items || []).slice(0, 26);
-    cloud.innerHTML = "";
-    cloud.style.minHeight = cloud.style.minHeight || "200px";
+  const list = (items || [])
+    .map(x => String(x || "").trim())
+    .filter(Boolean)
+    .slice(0, 60);
 
-    list.forEach((text) => {
-      const el = document.createElement('div');
-      el.className = 'cloud-wish';
-      const vw = window.innerWidth;
-      const minFs = vw < 480 ? 10 : 12;
-      const maxFs = vw < 480 ? 14 : 18;
-      el.style.setProperty('--fs', `${Math.round(rand(minFs, maxFs))}px`);
-      el.style.setProperty('--rot', `${Math.round(rand(-10, 10))}deg`);
+  cloud.innerHTML = "";
 
-      const inner = document.createElement('div');
-      inner.className = 'cloud-wish__text';
-      inner.textContent = String(text).trim();
-      el.appendChild(inner);
+  // Simple flowing list inside the box (no random placement / circles / decorations)
+  list.forEach((text) => {
+    const el = document.createElement('div');
+    el.className = 'cloud-wish';
+    el.textContent = text;
+    cloud.appendChild(el);
+  });
 
-      cloud.appendChild(el);
-    });
-
-    const els = Array.from(cloud.querySelectorAll('.cloud-wish'));
-    const W = Math.max(1, cloud.clientWidth);
-    const H = Math.max(200, cloud.clientHeight);
-
-    const placed = [];
-    const pad = 8;
-    const cx = W / 2;
-    const cy = H / 2;
-
-    function collides(x, y, w, h){
-      return placed.some(b => !(x + w + pad < b.x || x - pad > b.x + b.w || y + h + pad < b.y || y - pad > b.y + b.h));
-    }
-
-    els.forEach((el, i) => {
-      const w = el.offsetWidth;
-      const h = el.offsetHeight;
-
-      let ok = false;
-
-      for(let t = 0; t < 1500; t++){
-        const angle = 0.55 * t;
-        const radius = 2 + t * 0.42;
-        const x = cx + Math.cos(angle) * radius - w / 2;
-        const y = cy + Math.sin(angle) * radius - h / 2;
-
-        if(x < 4 || y < 4 || x + w > W - 4 || y + h > H - 4) continue;
-        if(!collides(x, y, w, h)){
-          el.style.left = `${x}px`;
-          el.style.top = `${y}px`;
-          placed.push({x, y, w, h});
-          ok = true;
-          break;
-        }
-      }
-
-      if(!ok){
-        for(let tries = 0; tries < 250; tries++){
-          const x = 4 + Math.random() * (W - w - 8);
-          const y = 4 + Math.random() * (H - h - 8);
-          if(!collides(x, y, w, h)){
-            el.style.left = `${x}px`;
-            el.style.top = `${y}px`;
-            placed.push({x, y, w, h});
-            ok = true;
-            break;
-          }
-        }
-      }
-
-      if(!ok){
-        const x = 4 + (i % 2) * (W * 0.48);
-        const y = 4 + Math.floor(i / 2) * (h + 10);
-        el.style.left = `${Math.max(4, Math.min(W - w - 4, x))}px`;
-        el.style.top = `${Math.max(4, Math.min(H - h - 4, y))}px`;
-        placed.push({x, y, w, h});
-      }
-    });
+  // If empty, keep the box height pleasant
+  if(list.length === 0){
+    const empty = document.createElement('div');
+    empty.className = 'cloud-wish cloud-wish--empty';
+    empty.textContent = "Be the first to leave a wish.";
+    cloud.appendChild(empty);
   }
+}
 
   async function loadFromSupabase(){
     try{

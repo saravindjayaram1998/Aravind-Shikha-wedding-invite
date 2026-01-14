@@ -1784,7 +1784,7 @@ textarea {
 
   /* keep the square logo prominent but not too tall */
   .logo-banner{
-    width: min(62vw, 1440px);
+    width: min(92vw, 2880px);
     max-height: 28vh;
   }
 
@@ -1843,4 +1843,42 @@ textarea {
   .countbox{ padding: 7px 9px; }
   .invite-line--name{ font-size: clamp(28px, 7.4vw, 42px); }
   .datebox{ margin: 8px auto 8px; }
+}
+
+/* =========================
+   Wishes: simple flowing box
+   ========================= */
+.wish-cloud{
+  /* Curved rectangle, light grey fill, no outline, no decorative effects */
+  background: rgba(230,230,230,.92);
+  border: none;
+  box-shadow: none;
+  overflow: auto;
+}
+
+/* Each wish as simple text line (no circles, no absolute positioning) */
+.cloud-wish{
+  position: static;
+  display: block;
+  max-width: 100%;
+  padding: 10px 12px;
+  margin: 0;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #111;
+  font-weight: 600;
+  line-height: 1.3;
+  transform: none;
+  box-shadow: none;
+  user-select: text;
+}
+
+.cloud-wish + .cloud-wish{
+  border-top: 1px solid rgba(0,0,0,.10);
+}
+
+.cloud-wish--empty{
+  font-weight: 500;
+  opacity: .75;
 }
