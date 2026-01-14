@@ -309,6 +309,8 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  outline: 0;
+
 }
 
 .logo-banner::before {
@@ -337,6 +339,9 @@ h1, h2, h3, h4, h5, h6, .brand, .hero__title, .hero__subtitle, .section__title {
   display: block;
   margin: 0;
   filter: drop-shadow(0 14px 30px rgba(0,0,0,.45));
+  border: 0;
+  outline: 0;
+
 }
 
 /* Garland decorations */
