@@ -33,8 +33,10 @@
       <input type="range" id="volumeSlider" min="0" max="100" value="10">
     </label>
   </div>
-  <audio id="bgMusic" loop preload="auto">
+  <audio id="bgMusic" loop preload="auto" playsinline>
     <source src="assets/music.mp3" type="audio/mpeg">
+    <source src="assets/music.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
   </audio>
 
   <!-- Menu -->
@@ -76,6 +78,7 @@
         </div>
       </div>
 
+      <!-- Invite text starts below (user scrolls to see) -->
       <div class="invite-text">
         <p class="invite-text__name">Aravind Jayaram</p>
         <p class="invite-text__parents">elder son of</p>

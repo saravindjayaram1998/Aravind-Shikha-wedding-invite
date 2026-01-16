@@ -150,13 +150,15 @@
   setInterval(tick, 1000);
 })();
 
-// Background music
+// Background music - Fixed autoplay
 (function music(){
   const DEFAULT_VOLUME = 0.10;
   const audio = document.getElementById('bgMusic');
   const btn = document.getElementById('musicToggle');
   const slider = document.getElementById('volumeSlider');
   if(!audio || !btn || !slider) return;
+
+  let hasUserInteracted = false;
 
   function setUI(isOn){
     btn.classList.toggle('is-on', isOn);
@@ -167,6 +169,7 @@
     const v = Math.max(0, Math.min(100, parseInt(slider.value, 10))) / 100;
     audio.volume = v;
   }
+  
   if(!slider.value){ slider.value = String(Math.round(DEFAULT_VOLUME*100)); }
   setVolumeFromSlider();
 
@@ -174,25 +177,50 @@
 
   async function tryPlay(){
     try{
+      // Ensure audio is ready
+      audio.load();
       await audio.play();
       setUI(true);
       return true;
-    }catch{
+    }catch(e){
+      console.log('Audio play failed:', e.message);
       setUI(false);
       return false;
     }
   }
 
-  tryPlay();
+  // Try to play on first user interaction
+  async function handleFirstInteraction(){
+    if(hasUserInteracted) return;
+    hasUserInteracted = true;
+    
+    // Small delay to ensure interaction is registered
+    setTimeout(async () => {
+      await tryPlay();
+    }, 100);
+  }
 
-  function unlock(){ tryPlay(); }
-  window.addEventListener('click', unlock, { once: true });
-  window.addEventListener('touchstart', unlock, { once: true });
-
-  btn.addEventListener('click', async () => {
-    if(audio.paused){ await tryPlay(); }
-    else { audio.pause(); setUI(false); }
+  // Listen for various user interactions to unlock audio
+  const interactionEvents = ['click', 'touchstart', 'touchend', 'keydown', 'scroll'];
+  interactionEvents.forEach(event => {
+    document.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
   });
+
+  // Music toggle button
+  btn.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    hasUserInteracted = true;
+    
+    if(audio.paused){ 
+      await tryPlay(); 
+    } else { 
+      audio.pause(); 
+      setUI(false); 
+    }
+  });
+
+  // Initialize UI state
+  setUI(false);
 })();
 
 // Image loader: tries multiple extensions for a basename
