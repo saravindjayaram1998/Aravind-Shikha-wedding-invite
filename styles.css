@@ -240,7 +240,7 @@ h1, h2, h3, h4 {
 .divider {
   color: #d4af37;
   font-size: 1.8rem;
-  margin: 35px 0;
+  margin: 20px 0;
   opacity: 0.7;
 }
 
@@ -273,7 +273,8 @@ h1, h2, h3, h4 {
    ============================================= */
 .section--hero {
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 80px;
+  padding-bottom: 30px;
 }
 
 .hero__content {
@@ -281,9 +282,10 @@ h1, h2, h3, h4 {
 }
 
 .hero__logo {
-  width: 240px;
+  width: 480px;
+  max-width: 90vw;
   height: auto;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 /* Countdown */
@@ -291,7 +293,7 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: center;
   gap: 28px;
-  margin: 35px 0;
+  margin: 25px 0;
   flex-wrap: wrap;
 }
 
@@ -320,15 +322,16 @@ h1, h2, h3, h4 {
 
 /* Invite Text */
 .invite-text {
-  margin: 35px 0;
+  margin: 25px 0;
 }
 
 .invite-text__name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem;
-  font-weight: 600;
+  font-size: 3.4rem;
+  font-weight: 700;
   color: #f5f5f5;
   margin: 12px 0 6px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .invite-text__parents {
@@ -342,20 +345,20 @@ h1, h2, h3, h4 {
   font-size: 2rem;
   font-style: italic;
   color: #d4af37;
-  margin: 25px 0;
+  margin: 20px 0;
 }
 
 .invite-date {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.8rem;
   color: #d4af37;
-  margin-top: 35px;
+  margin-top: 25px;
 }
 
 .invite-venue {
   font-size: 1.1rem;
   opacity: 0.8;
-  margin: 12px 0 35px;
+  margin: 12px 0 25px;
 }
 
 /* =============================================
@@ -743,12 +746,18 @@ h1, h2, h3, h4 {
     padding: 70px 16px 50px;
   }
   
+  .section--hero {
+    padding-top: 70px;
+    padding-bottom: 25px;
+  }
+  
   .section__title {
     font-size: 2rem;
   }
   
   .hero__logo {
-    width: 200px;
+    width: 380px;
+    max-width: 85vw;
   }
   
   .countdown__value {
@@ -760,7 +769,7 @@ h1, h2, h3, h4 {
   }
   
   .invite-text__name {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
   }
   
   .invite-text__parents {
@@ -857,12 +866,18 @@ h1, h2, h3, h4 {
     padding: 60px 14px 40px;
   }
   
+  .section--hero {
+    padding-top: 60px;
+    padding-bottom: 20px;
+  }
+  
   .section__title {
     font-size: 1.7rem;
   }
   
   .hero__logo {
-    width: 170px;
+    width: 300px;
+    max-width: 80vw;
   }
   
   .countdown {
@@ -878,7 +893,7 @@ h1, h2, h3, h4 {
   }
   
   .invite-text__name {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
   
   .invite-text__parents {
@@ -939,6 +954,10 @@ h1, h2, h3, h4 {
   
   .family__members li {
     font-size: 0.95rem;
+  }
+  
+  .divider {
+    margin: 15px 0;
   }
 }
 
