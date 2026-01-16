@@ -1,4 +1,12 @@
-// Wedding Invite — Mobile-Optimized v15
+// Wedding Invite – Mobile-Optimized v17
+
+// Disable browser scroll restoration and force scroll to top on page load
+(function forceScrollTop(){
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+})();
 
 // Ensure BG video plays at reduced speed
 (function bgVideo(){
@@ -28,7 +36,7 @@
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
 })();
 
-// Event tabs (5 Feb / 6 Feb)
+// Event tabs (5 Feb / 6 Feb) with Swivel Flip transition
 (function eventTabs(){
   const t1 = document.getElementById('tabDay1');
   const t2 = document.getElementById('tabDay2');
@@ -36,21 +44,72 @@
   const p2 = document.getElementById('panelDay2');
   if(!t1 || !t2 || !p1 || !p2) return;
 
+  let isAnimating = false;
+  
+  // Set up perspective on parent container for 3D effect
+  const parentContainer = p1.parentElement;
+  if(parentContainer){
+    parentContainer.style.perspective = '1000px';
+    parentContainer.style.perspectiveOrigin = 'center center';
+  }
+
   function activate(day){
+    if(isAnimating) return;
+    
     const is1 = day === 1;
+    const showPanel = is1 ? p1 : p2;
+    const hidePanel = is1 ? p2 : p1;
+    
+    // Skip if already on this panel
+    if(showPanel.classList.contains('is-active')) return;
+
+    // Update tab states immediately
     t1.classList.toggle('is-active', is1);
     t2.classList.toggle('is-active', !is1);
     t1.setAttribute('aria-selected', String(is1));
     t2.setAttribute('aria-selected', String(!is1));
-    p1.classList.toggle('is-active', is1);
-    p2.classList.toggle('is-active', !is1);
+
+    // Animate transition
+    isAnimating = true;
+    
+    // Swivel out current panel (rotate away)
+    hidePanel.style.transformOrigin = 'center center';
+    hidePanel.style.transition = 'opacity 0.4s ease, transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)';
+    hidePanel.style.opacity = '0';
+    hidePanel.style.transform = 'rotateY(-180deg) scale(0.8)';
+    
+    setTimeout(() => {
+      hidePanel.classList.remove('is-active');
+      hidePanel.style.transition = '';
+      hidePanel.style.opacity = '';
+      hidePanel.style.transform = '';
+      
+      // Prepare incoming panel (start rotated)
+      showPanel.style.transformOrigin = 'center center';
+      showPanel.style.opacity = '0';
+      showPanel.style.transform = 'rotateY(180deg) scale(0.8)';
+      showPanel.classList.add('is-active');
+      
+      // Trigger reflow
+      void showPanel.offsetWidth;
+      
+      // Swivel in new panel
+      showPanel.style.transition = 'opacity 0.4s ease, transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1)';
+      showPanel.style.opacity = '1';
+      showPanel.style.transform = 'rotateY(0deg) scale(1)';
+      
+      setTimeout(() => {
+        showPanel.style.transition = '';
+        isAnimating = false;
+      }, 500);
+    }, 400);
   }
 
   t1.addEventListener('click', ()=>activate(1));
   t2.addEventListener('click', ()=>activate(2));
 })();
 
-// Countdown — target 5 Feb 2026 00:00 IST
+// Countdown – target 5 Feb 2026 00:00 IST
 (function countdown(){
   const target = new Date("2026-02-05T00:00:00+05:30");
 
@@ -267,6 +326,45 @@
   timer = setInterval(stepClockwise, 5000);
 })();
 
+// Visitor Counter - Unique by IP
+(function visitorCounter(){
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEPANua7OgtA_oHnIJKrN_ma2XsCX3T91FlVZePTuxM57eqD8y3U02SSgWN2DWcGplnA/exec";
+  
+  const counterEl = document.getElementById('visitorCount');
+  if(!counterEl) return;
+
+  async function trackVisitor(){
+    try {
+      // Get visitor's IP using free API
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const ipData = await ipResponse.json();
+      const visitorIP = ipData.ip;
+
+      // Send to Google Sheets to track unique visitor
+      const response = await fetch(GOOGLE_SCRIPT_URL + '?action=visitor&ip=' + encodeURIComponent(visitorIP));
+      const data = await response.json();
+      
+      if(data.success && data.visitorCount !== undefined){
+        counterEl.textContent = data.visitorCount;
+      }
+    } catch(e) {
+      console.error('Visitor counter error:', e);
+      // Fallback: just try to get count without IP
+      try {
+        const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getVisitorCount');
+        const data = await response.json();
+        if(data.success && data.visitorCount !== undefined){
+          counterEl.textContent = data.visitorCount;
+        }
+      } catch(e2) {
+        console.error('Fallback counter error:', e2);
+      }
+    }
+  }
+
+  trackVisitor();
+})();
+
 // Wishes - Google Sheets Integration
 (function wishes(){
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEPANua7OgtA_oHnIJKrN_ma2XsCX3T91FlVZePTuxM57eqD8y3U02SSgWN2DWcGplnA/exec";
@@ -287,9 +385,9 @@
 
   let lastWishes = [];
 
-  // Render wishes as a simple list (latest 10 only)
+  // Render all wishes (no limit)
   function renderWishes(items){
-    const list = (items || []).slice(0, 10); // Show only latest 10 comments
+    const list = items || []; // Show ALL comments
     cloud.innerHTML = "";
     
     if(list.length === 0){
